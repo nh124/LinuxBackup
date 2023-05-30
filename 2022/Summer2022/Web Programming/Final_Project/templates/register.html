@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="../static/style/loginStyle.css">
+  <link rel="icon" type="image/x-icon" href="../static/images/favicon-32x32.png">
+</head>
+<body>
+  <section>
+    <div class="imgBx">
+      <img src="https://assets.kpmg/content/dam/kpmg/it/images/2020/09/Corso-AEO-1500x1000.jpg/jcr:content/renditions/original" 
+      alt="space">
+    </div>
+    <div class="contentBox">
+      <div class="formBx">
+        <h2>Register</h2>
+        <form action="/register" method="POST">
+          <div class="inputBx">
+            <span>First Name</span>
+            <input type="text" name="Fname">
+          </div>
+          <div class="inputBx">
+            <span>Last name</span>
+            <input type="text" name="Lname">
+          </div>
+          <div class="inputBx">
+            <span>phone number</span>
+            <input type="text" name="phone">
+          </div>
+          <div class="inputBx">
+            <span>Username</span>
+            <input type="text" name="username">
+          </div>
+          <div class="inputBx">
+            <span>Password</span>
+            <input type="password" name="password">
+          </div>
+          <div class="inputBx">
+            <input type="submit">
+          </div>
+          <div class="inputBx">
+            <p>Already have an account? <a href={{url_for("login")}}>Login</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

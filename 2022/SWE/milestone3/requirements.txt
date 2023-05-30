@@ -1,0 +1,8 @@
+requests
+python-dotenv
+flask
+psycopg2-binary
+Flask-SQLAlchemy==2.1
+Flask-Login==0.5.0
+Flask-WTF==1.0.0
+flask_bcrypt

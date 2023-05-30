@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Space</title>
+  <link rel="stylesheet" href="../static/style/homeStyle.css">
+  <link rel="icon" type="image/x-icon" href="../static/images/favicon-32x32.png">
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <span></span>
+      <img src="../static/images/shared/logo.svg" alt="">
+        <ul>
+            <li><a href="#welcome">welcome</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#Inspiration">Inspiration</a></li>
+            <li><a href="#Funfacts">Fun Facts!</a></li>
+            <li><a href={{url_for('register')}}>Register</a></li>
+            <li><a href={{url_for('login')}}>login</a></li>
+          </ul>
+        </nav>
+    <section id="welcome">
+      <h1>Welcome To Free Space</h1>
+      <p class="lead">
+        Welcome to Free Space. This webpage is devoted to individuals that are interested in astronomy. 
+        This is a brand new site that showcases extraterrestrial object and phenomenons: this can range from recent discoveries,
+        space explorations happening around the globe, and more!   
+
+      </p>
+    </section>
+    <section id="about">
+        <h1>About</h1>
+        <p class="lead">Hello My name is Nur. I'm the creator of this website. My passion was
+          diverged path between technology and astrophysics. Although I persued my tech degree, I wanted to
+          pay a visit to one of my oldest passions. This site is using Flask as a backend, and javascript, html, css in the front end.
+          This webpage is integrated with the twillio API that allows for more 
+          secure login vie authentication. Out of everything that I've learned in this class, one of the most valuable thing was 
+          the vast amount of knowledge in so many different technologies.
+        </p>
+    </section>
+    <section id="Inspiration">
+        <h1>My Inspiration</h1>
+        <p class="lead">My inpiration in  astromy goes vary deep. I used to be quite the avid reader and most 
+          of the book were based on astronomy. One of my most enjoyable moments were me watching the stars in the night 
+          sky in the dark. This game me peace of mind!
+        </p>
+    </section>
+    <section id="Funfacts">
+        <h1>Fun Facts!</h1>
+        <p class="lead">{{fun_fact}}</p>
+    </section>
+  </div>
+</body>
+</html>

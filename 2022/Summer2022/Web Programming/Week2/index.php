@@ -1,0 +1,122 @@
+<?php
+  require("week4Function.php");
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #header {
+        background-color: lightblue;
+      }
+      .info {
+       
+        border: 2px solid black;
+        padding: 10px;
+        background-color: lightblue;
+      }
+      .content {
+        border: 2px solid black;
+        padding: 10px;
+      }
+      #image {
+        border: 2px solid black;
+        width: 100%;
+        height: 300px;
+
+      }
+      #link1 {
+        margin: 10px;
+      }
+      #link2 {
+        margin: 10px;
+      }
+      /* .footer {
+        border: 2px solid black;
+      } */
+      #copyright {
+        float: left;
+      }
+      #author {
+        float: right;
+      }
+      .cell {
+        border: 1px solid black;
+      }
+      #everything {
+        margin: 50px;
+      }
+    </style>
+    <script>
+      function create_alert() {
+        alert("Alert!!!");
+      }
+      function update_Text() {
+        document.getElementById("information").innerHTML = "new Text";
+      }
+    </script>
+    <script src="./JQuery/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./Foundation/css/foundation.css">
+  </head>
+  <body id="everything">
+    <div class="grid-x" id="header">
+      <div id=header class="cell small-12 medium-12 large-12 text-right">
+          <button id="link1" class="button nav" onclick="create_alert()">Alert</button>
+          <button id="link1" class="button nav" onclick="update_Text()">Update Body</button>
+      </div>
+    </div>
+    <img
+      id="image"
+      src="https://media.istockphoto.com/photos/tropical-beach-palm-trees-sea-wave-and-white-sand-picture-id1300296030?b=1&k=20&m=1300296030&s=170667a&w=0&h=w1s7kmN2TH7O326d263Cs-E44teA1hy6u29UIVf_z1w="
+      alt="picture"
+    />
+    <div class="grid-x" id="body">
+      <div id="information" class="cell small-12 medium-8 large-8">
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia,
+          provident adipisci, minus ut tempora illum, id dignissimos quae beatae
+          iure deserunt ipsa accusantium nihil eum blanditiis maiores amet quia
+          velit? Ducimus porro similique, illum non blanditiis eos architecto
+          nulla eaque sit alias sapiente explicabo quae, natus dolores sed?
+          Necessitatibus ipsa recusandae quisquam blanditiis vitae eveniet nemo
+          similique facere perspiciatis natus. Voluptatum ut mollitia tempora
+          assumenda consectetur. Aliquam perspiciatis distinctio temporibus quia
+          ipsam voluptates voluptatibus magnam rem ducimus expedita culpa
+          voluptatum, aliquid ab repellendus tenetur a adipisci earum architecto
+          facilis. Sunt. Unde blanditiis adipisci quisquam, autem neque vel
+          optio labore sequi? Praesentium sapiente magnam error debitis, in
+          nulla placeat quod ab quisquam. Nostrum numquam consequuntur dicta,
+          laborum voluptas beatae illum aliquid? Reiciendis expedita voluptate
+          vero pariatur laborum quo? Natus tempora voluptates consequuntur
+          accusamus voluptatum totam sequi quae veritatis? Saepe fugiat
+          similique tenetur numquam corporis, dolorum provident labore quos
+          impedit facere adipisci. Asperiores officiis, ipsam facere ratione
+          sint iusto deleniti dignissimos id aliquam eaque eligendi nam,
+          provident, commodi omnis aliquid voluptatum deserunt cum? Commodi
+          voluptatibus dolorem tempora repellendus neque optio nostrum non. Eos
+          quibusdam odit voluptate ad in, minus, illo voluptates debitis iste
+          quod odio impedit vel sint. Quia ducimus voluptate ipsam accusantium
+          consequuntur fugiat, ut vitae quaerat facere eaque iste temporibus?
+          Deserunt in quia quisquam magni vitae reiciendis, temporibus animi
+          iusto iure amet fugit nemo provident, officiis similique. Tempora hic,
+          explicabo corporis amet error id et magni. Placeat repellendus vitae
+          quidem.
+        </p>
+      </div>
+      <div class="cell small-12 medium-4 large-4">
+        <h1>Content page 1</h1>
+	<?php printMsg();?>
+      </div>
+    </div>
+    <div class="grid-x">
+      <div id="credit" class="cell small-12 medium-12 large-12">
+        <p id="copyright">@2021 Nur Haque, Undergrad., All Rights Reserved</p>
+        <p id="author">Designed by Nur Haque, Undergrad.</p>
+      </div>
+    </div>
+  </body>
+</html>
+

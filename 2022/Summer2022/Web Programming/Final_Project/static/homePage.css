@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=PT+Sans:wght@700&display=swap");
+* {
+  padding: 20px;
+}
+body {
+  background-color: #2a252a;
+  display: grid;
+  grid-template-columns: 0.5fr 2fr;
+  grid-gap: 35px;
+}
+header {
+  background-color: #2a252a;
+  display: flex;
+  font-family: Montserrat;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  /* background-color: #2A252A; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("background.jpg");
+  box-shadow: 0 0 6px 3px rgb(177, 106, 106), 0 0 10px 6px rgb(88, 24, 88),
+    0 0 14px 9px rgb(140, 145, 145);
+}
+
+.player {
+  background-color: #2a252a;
+  font-family: Montserrat;
+  grid-row-start: 4;
+  grid-row-end: 16;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  box-shadow: 0 0 6px 3px rgb(177, 106, 106), 0 0 10px 6px rgb(88, 24, 88),
+    0 0 14px 9px rgb(140, 145, 145);
+}
+.vs {
+  background-color: #2a252a;
+  font-family: Montserrat;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 16;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 6px 3px rgb(177, 106, 106), 0 0 10px 6px rgb(88, 24, 88),
+    0 0 14px 9px rgb(140, 145, 145);
+}
+.opponent {
+  background-color: #2a252a;
+  font-family: Montserrat;
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 16;
+  box-shadow: 0 0 6px 3px rgb(177, 106, 106), 0 0 10px 6px rgb(88, 24, 88),
+    0 0 14px 9px rgb(140, 145, 145);
+}
+footer {
+  background-color: #2a252a;
+  display: flex;
+  font-family: Montserrat;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 17;
+  grid-row-end: 18;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  box-shadow: 0 0 6px 3px rgb(177, 106, 106), 0 0 10px 6px rgb(88, 24, 88),
+    0 0 14px 9px rgb(140, 145, 145);
+}
+.Genra {
+  background-color: #2a252a;
+  display: inline;
+  text-align: left;
+  color: rgb(235, 34, 34);
+}
+.GenraList {
+  background-color: #2a252a;
+  display: inline;
+  text-align: right;
+  padding-left: 0.5%;
+  color: white;
+}
+.Title {
+  background-color: #2a252a;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2em;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 10;
+  grid-row-end: 15;
+  align-items: center;
+  padding: 3%;
+  background-image: rgb(235, 34, 34);
+  text-transform: uppercase;
+  background-size: 100%;
+  background-repeat: repeat;
+  text-decoration: none;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  text-shadow: 4px 4px 2px rgb(243, 143, 143);
+}
+
+.infoTitle {
+  background-color: #2a252a;
+  color: rgb(233, 131, 131);
+}
+
+.overview {
+  background-color: #2a252a;
+  color: white;
+}
+
+hr {
+  background-color: #2a252a;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.taglineTitle {
+  background-color: #2a252a;
+  color: rgb(235, 34, 34);
+}
+
+.tagline {
+  background-color: #2a252a;
+  color: white;
+}
+
+.TitleWeb {
+  color: rgb(235, 34, 34);
+}
+
+.player > * {
+  background-color: #2a252a;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2em;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 10;
+  grid-row-end: 15;
+  align-items: center;
+  padding: 3%;
+  background-image: rgb(235, 34, 34);
+  text-transform: uppercase;
+  background-size: 100%;
+  background-repeat: repeat;
+  text-decoration: none;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  text-shadow: 4px 4px 2px rgb(243, 143, 143);
+}
+
+.opponent > * {
+  background-color: #2a252a;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2em;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 10;
+  grid-row-end: 15;
+  align-items: center;
+  padding: 3%;
+  background-image: rgb(235, 34, 34);
+  text-transform: uppercase;
+  background-size: 100%;
+  background-repeat: repeat;
+  text-decoration: none;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  text-shadow: 4px 4px 2px rgb(243, 143, 143);
+}
+
+header > * {
+  color: white;
+}
+.vs > * {
+  background-color: #2a252a;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2em;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 10;
+  grid-row-end: 15;
+  align-items: center;
+  padding: 3%;
+  background-image: rgb(235, 34, 34);
+  text-transform: uppercase;
+  background-size: 100%;
+  background-repeat: repeat;
+  text-decoration: none;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  text-shadow: 4px 4px 2px rgb(243, 143, 143);
+}

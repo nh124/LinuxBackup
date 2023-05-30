@@ -1,0 +1,46 @@
+.LoginPage {
+  display: flex;
+  flex-wrap: wrap;
+}
+.login {
+  border-radius: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px black solid;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2%;
+  height: 1000px;
+}
+.title {
+  margin-left: 30%;
+  font-size: 3em;
+}
+.login > * {
+  /* border: 2px black solid; */
+  flex: 1 1 35%;
+}
+
+.loginC {
+  /* border: 2px black solid; */
+  width: 50%;
+  padding: 2%;
+}
+
+.loginC > * {
+  padding: 2%;
+}
+.LoginPage > * {
+  flex: 1 1 33%;
+}
+
+.Image {
+  /* padding: 10px; */
+  border: 2px black solid;
+  color: blue;
+}
+
+.imageDisplay {
+  width: 100%;
+  height: 100%;
+}

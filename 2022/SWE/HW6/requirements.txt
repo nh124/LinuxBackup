@@ -1,0 +1,5 @@
+requests
+python-dotenv
+flask
+psycopg2-binary
+Flask-SQLAlchemy==2.1

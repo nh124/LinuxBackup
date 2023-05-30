@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Varification</title>
+  <link rel="stylesheet" href="../static/style/loginStyle.css">
+  <link rel="icon" type="image/x-icon" href="../static/images/favicon-32x32.png">
+</head>
+<body>
+  <section>
+    <div class="imgBx">
+      <img src="https://assets.kpmg/content/dam/kpmg/it/images/2020/09/Corso-AEO-1500x1000.jpg/jcr:content/renditions/original" 
+      alt="space">
+    </div>
+    <div class="contentBox">
+      <div class="formBx">
+        <h2>Varification</h2>
+        <form action="/varification" method="POST">
+          <div class="inputBx">
+            <span>Phone number</span>
+            <input type="text" name="phone">
+          </div>
+          <div class="inputBx">
+            <span>Varification Code</span>
+            <input type="text" name="varification">
+          </div>
+          {% for message in get_flashed_messages()%} {{message}} {% endfor %}
+          <div class="inputBx">
+            <input type="submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

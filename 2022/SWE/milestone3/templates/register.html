@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form method="POST" action="/register">
+    <h1>Hello</h1>
+    {{ form.hidden_tag() }}
+    <lable for={{form.Fname}} First Name</lable>
+    {{ form.Fname }}
+    <lable for={{form.Fname}} Last Name</lable>
+    {{ form.Lname }}
+    <lable for={{form.Fname}} Username</lable></lable>
+    {{ form.username }}
+    <lable for={{form.Fname}} Password</lable></lable>
+    {{ form.password }}
+    {{ form.submit }}
+  </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='style/style.css')}}"
+    />
+  </head>
+  <body>
+    <h1>Hi! My name is Nur Haque</h1>
+    <ol class="AnimeList">
+      {%for i in range(len)%} {%if Anime[i] == 'Erased'%}
+      <li>
+        <mark> {{Anime[i]}} </mark>
+      </li>
+      <image class="animeFav" src="{{imagesOfAnime[i]}}" width="500"></image>
+      {%else%}
+      <li>{{Anime[i]}}</li>
+      <image class="anime" src="{{imagesOfAnime[i]}}" width="500"></image>
+      {%endif%} {%endfor%}
+    </ol>
+  </body>
+</html>

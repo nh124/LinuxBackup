@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+@layer base {
+  body {
+    @apply font-[Railway];
+  }
+  li {
+    @apply px-4;
+    /* @apply uppercase; */
+  }
+}
+
+.content-div {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+}
+
+.content-div:hover {
+  background: linear-gradient(
+    to top,
+    rgba(112, 157, 255, 0.2),
+    hsla(242, 74%, 61%, 0.2)
+  ) !important;
+}
+.nav_list {
+  @apply cursor-pointer;
+  @apply uppercase;
+}

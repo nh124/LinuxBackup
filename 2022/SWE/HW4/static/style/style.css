@@ -1,0 +1,13 @@
+body {
+  background-color: #69f0ae;
+  padding-left: 5%;
+}
+
+ol.AnimeList {
+  font-size: 36px;
+}
+
+image.animeFav {
+  position: fixed;
+  bottom: 0;
+}

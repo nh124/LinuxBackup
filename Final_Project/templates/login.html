@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script type="text/javascript" >
+function save_to_local(usr) {
+    localStorage.setItem("username", usr);
+}
+
+</script>
+    </head>
+    <body>
+        <h1>Log In</h1>
+        <form method="post">
+            <label for="username">Username</label>
+            <input name="username" id="username" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            <input type="submit" onclick="save_to_local(document.getElementById('username').value)" value="Submit">
+          </form>
+          {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    </body>
+</html>

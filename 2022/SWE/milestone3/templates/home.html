@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOVIEZONE</title>
+    <link rel="short icon" type="image/png" href="/static/favicon.png" />
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <header>
+      <img
+        class="logo"
+        src="https://craffic.co.in/wp-content/uploads/2020/07/logo1cra-1-1024x1024-3-e1594022569611.png"
+        alt="logo"
+        width="100"
+        height="100"
+      />
+      <h1 class="TitleWeb">MOVIEZONE</h1>
+    </header>
+    <body>
+      <a
+        class="image"
+        href="{{movieWikiInfo[movieWikiInfoLen-1]}}"
+        target="_blank"
+      >
+        <img
+          src="{{movieWikiInfo[movieWikiInfoLen-2]}}"
+          alt="{{movieWikiInfo[movieWikiInfoLen-2]}}"
+          width="400"
+          height="400"
+        />
+        <h3 class="Title">{{movieWikiInfo[0]}}</h3>
+      </a>
+      <div class="info">
+        <h2 class="infoTitle">Synopsis</h2>
+        <hr />
+        <p class="overview">{{movieWikiInfo[movieWikiInfoLen-3]}}</p>
+        {%if movieWikiInfo[1] != "" %}
+        <h3 class="taglineTitle">
+          Tagline:<i class="tagline">"{{movieWikiInfo[1]}}"</i>
+        </h3>
+        {%endif%}
+        <h3 class="Genra">Genra:</h3>
+        {%for i in range(movieWikiInfoLen-3)%} {%if i != 0 and i != 1%}
+        <h3 class="GenraList">{{movieWikiInfo[i]}}</h3>
+        {%endif%} {%endfor%}
+        <div class="rate">
+          <li>Rating: {{average}}</li>
+        </div>
+      </div>
+    </body>
+    <footer>
+      <a href="https://en.wikipedia.org/wiki/Main_Page" target="_blank">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Wikipedia_logo_%28svg%29.svg/1200px-Wikipedia_logo_%28svg%29.svg.png"
+          alt="Wiki"
+          width="50"
+          height="50"
+        />
+      </a>
+      <a href="https://www.themoviedb.org/?language=en-US" target="_blank">
+        <img
+          src="https://cdn-images-1.medium.com/max/1200/1*vIR7iO-1GnY2xYxL6NiYkw.png"
+          alt="TMDB"
+          width="50"
+          height="50"
+        />
+      </a>
+      <a href="https://github.com/nh124" target="_blank">
+        <img
+          src="https://pngimg.com/uploads/github/github_PNG40.png"
+          alt="GitHub"
+          width="50"
+          height="50"
+        />
+      </a>
+    </footer>
+
+    <div class="commentary">
+      <form method="POST" action="/home">
+        <div class="comment">
+          <lable class="lable" for="comment">Comments</lable>
+          <input type="text" name="comment" />
+        </div>
+        <div class="rating">
+          <lable for="rating">Rate</lable>
+          <input type="text" name="rating" />
+          <input type="submit" value="Submit" />
+          {% for message in get_flashed_messages()%} {{message}} {% endfor %}
+        </div>
+      </form>
+    </div>
+
+    <div class="stats">
+      <h2>Comments</h2>
+      {% for comment in comments %} {% if comment.MovieName ==movieWikiInfo[0]%}
+      <div class="stat">
+        <div class="Name">
+          <li>{{comment.userName}}</li>
+        </div>
+        <div class="comment">
+          <li>
+            {{comment.comment}}
+            <form method="POST" action="/comment">
+              <input type="submit" value="Delete" />
+            </form>
+          </li>
+        </div>
+      </div>
+      {%endif%} {% endfor %}
+    </div>
+    <a href="{{url_for('logout')}}">LOGOUT</a>
+  </body>
+</html>

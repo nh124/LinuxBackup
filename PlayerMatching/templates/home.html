@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <nav
+      class="w-full h-[80px] bg-gray-200 flex justify-between items-center py-3 px-5"
+    >
+      <h1>{{currentUser}}</h1>
+      <div>
+        <input
+          id="search"
+          type="text"
+          class="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none"
+          placeholder="Search anything..."
+        />
+        <button
+          class="w-[100px] h-[60px] bg-red-400 text-white hover:bg-red-800 durations-300"
+        >
+          search
+        </button>
+      </div>
+
+      <ul class="flex nav_list">
+        <a href="{{url_for('logout')}}">Logout</a>
+      </ul>
+    </nav>
+    <div class="text-3xl">
+      <div class="w-full h-100px px-4 py-4 flex flex-row flex-wrap gap-4">
+        {% for users in match %}
+        <div
+          class="max-w-sm rounded overflow-hidden shadow-lg flex flex-col justify-center items-center"
+        >
+          <img
+            class="w-full h-[400px]"
+            src="https://www.w3schools.com/howto/img_avatar.png"
+            alt="Sunset in the mountains"
+          />
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2" id="name">{{users.name}}</div>
+            <p class="text-gray-700 text-base" id="bio">{{users.bio}}</p>
+          </div>
+          <div class="px-6 pt-4 pb-2">
+            {% for skill in users.skills.split(",") %}
+            <span
+              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              id="skill"
+              >{{skill}}</span
+            >
+            {%endfor%}
+          </div>
+          <button
+            class="w-[200px] h-[60px] bg-red-400 text-white hover:bg-red-800 durations-300 mb-[20px] rounded"
+          >
+            search
+          </button>
+        </div>
+        {% endfor%}
+      </div>
+    </div>
+    <script src="../static/scripts/index.js"></script>
+  </body>
+</html>

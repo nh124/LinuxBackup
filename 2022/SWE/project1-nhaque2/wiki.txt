@@ -1,0 +1,106 @@
+{
+    "batchcomplete": "",
+    "continue": {
+        "continue": "-||",
+        "sroffset": 10
+    },
+    "query": {
+        "search": [
+            {
+                "ns": 0,
+                "pageid": 27936,
+                "size": 162355,
+                "snippet": "issue, its editorial page anticipated the comic continuing and that &quot;The <span class=\"searchmatch\">Spiderman</span> [sic] ... will appear every month in Amazing.&quot; Regardless, Lee received",
+                "timestamp": "2022-02-04T02:35:54Z",
+                "title": "Spider-Man",
+                "wordcount": 16864
+            },
+            {
+                "ns": 0,
+                "pageid": 146947,
+                "size": 93141,
+                "snippet": "[@RCEverbeck] (August 6, 2018). &quot;On the set of the 1st #tobymcguire #<span class=\"searchmatch\">spiderman</span> with #jksimmons . I was the original #eddiebrock before #tophergrace although",
+                "timestamp": "2022-02-09T03:51:40Z",
+                "title": "Spider-Man (2002 film)",
+                "wordcount": 10113
+            },
+            {
+                "ns": 0,
+                "pageid": 25862453,
+                "size": 187361,
+                "snippet": "2021. Herbst, Kendall (December 6, 2010). &quot;Emma Stone goes blonde for <span class=\"searchmatch\">Spiderman</span>&quot;. InStyle. Archived from the original on May 10, 2012. Retrieved December",
+                "timestamp": "2022-02-08T11:04:57Z",
+                "title": "The Amazing Spider-Man (film)",
+                "wordcount": 18462
+            },
+            {
+                "ns": 0,
+                "pageid": 16655646,
+                "size": 9685,
+                "snippet": "Italian <span class=\"searchmatch\">Spiderman</span> is an Australian film parody of Italian action\u2013adventure films of the 1960s and 1970s, first released on YouTube in 2007. The parody",
+                "timestamp": "2022-01-17T10:16:23Z",
+                "title": "Italian Spiderman",
+                "wordcount": 965
+            },
+            {
+                "ns": 0,
+                "pageid": 45359871,
+                "size": 244576,
+                "snippet": "Spider-Man: Homecoming is a 2017 American superhero film based on the Marvel Comics character Spider-Man, co-produced by Columbia Pictures and Marvel Studios",
+                "timestamp": "2022-02-07T00:54:34Z",
+                "title": "Spider-Man: Homecoming",
+                "wordcount": 19695
+            },
+            {
+                "ns": 0,
+                "pageid": 52179698,
+                "size": 166501,
+                "snippet": "Spider-Man: Far From Home is a 2019 American superhero film based on the Marvel Comics character Spider-Man, co-produced by Columbia Pictures and Marvel",
+                "timestamp": "2022-02-08T17:48:17Z",
+                "title": "Spider-Man: Far From Home",
+                "wordcount": 13273
+            },
+            {
+                "ns": 0,
+                "pageid": 7927053,
+                "size": 153842,
+                "snippet": "Marvel announces <span class=\"searchmatch\">Spiderman</span> reboot&quot;. CalTimes. Archived from the original on October 2, 2013. Retrieved August 23, 2012. &quot;Who Is <span class=\"searchmatch\">Spiderman</span>?&quot;. Hollywood.com",
+                "timestamp": "2022-02-09T13:47:38Z",
+                "title": "Spider-Man in film",
+                "wordcount": 13381
+            },
+            {
+                "ns": 0,
+                "pageid": 35625166,
+                "size": 110606,
+                "snippet": "embraced fantasy without forgetting physics&quot;. Digital Trends. &quot;The Amazing <span class=\"searchmatch\">Spiderman</span> 2 - Imageworks&quot;. Sony Pictures Imageworks. Archived from the original",
+                "timestamp": "2022-02-04T19:46:10Z",
+                "title": "The Amazing Spider-Man 2",
+                "wordcount": 10391
+            },
+            {
+                "ns": 0,
+                "pageid": 702117,
+                "size": 138736,
+                "snippet": "October 19, 2009. Retrieved October 13, 2007. Seymour, Mike (May 5, 2007). &quot;<span class=\"searchmatch\">Spiderman</span> \u2013 The Technical Web we Weave&quot;. fxguide. Archived from the original on",
+                "timestamp": "2022-02-08T03:14:41Z",
+                "title": "Spider-Man 3",
+                "wordcount": 12553
+            },
+            {
+                "ns": 0,
+                "pageid": 612052,
+                "size": 90748,
+                "snippet": "Spider-Man 2 is a 2004 American superhero film directed by Sam Raimi and written by Alvin Sargent from a story by Alfred Gough, Miles Millar and Michael",
+                "timestamp": "2022-01-31T10:57:07Z",
+                "title": "Spider-Man 2",
+                "wordcount": 7456
+            }
+        ],
+        "searchinfo": {
+            "suggestion": "spider man",
+            "suggestionsnippet": "spider man",
+            "totalhits": 607
+        }
+    }
+}
