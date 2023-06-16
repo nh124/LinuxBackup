@@ -7,13 +7,20 @@ function App() {
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [phone, setPhone] = useState("");
+  const [role, setRole] = useState("");
   const [token, setToken] = useState("");
+
   const AddUser = () => {
     const data = {
       fistname: "fistname",
       lastname: "lastname",
       email: "email",
       password: "password",
+      username: "username",
+      phone: "phone",
+      role: "STUDENT",
     };
     JSON.stringify(data);
     console.log(data);
@@ -24,25 +31,28 @@ function App() {
 
   const login = () => {
     const data = {
-      email: "email",
+      username: "username",
       password: "password",
     };
     JSON.stringify(data);
     console.log(data);
     axios
-      .post("http://localhost:8080/api/v1/auth/authentication", data)
+      .post("http://localhost:8080/api/v1/auth/authenticate", data)
       .then((response) => setToken(response.data.token));
   };
 
   const getData = async () => {
-    const response = await fetch("http://localhost:8080/api/v1/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(),
-    });
+    const response = await fetch(
+      "http://localhost:8080/api/v1/access-point/getUsers",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(),
+      }
+    );
     console.log(response.json());
   };
 
@@ -54,11 +64,20 @@ function App() {
       <span>lastname</span>
       <input onChange={(e) => setLastName(e.target)} type="text" />
       <br />
-      <span>email</span>
-      <input onChange={(e) => setEmail(e.target)} type="text" />
+      <span>username</span>
+      <input onChange={(e) => setUsername(e.target)} type="text" />
       <br />
       <span>password</span>
       <input onChange={(e) => setPassword(e.target)} type="text" />
+      <br />
+      <span>email</span>
+      <input onChange={(e) => setEmail(e.target)} type="text" />
+      <br />
+      <span>Phone</span>
+      <input onChange={(e) => setPhone(e.target)} type="text" />
+      <br />
+      <span>role</span>
+      <input onChange={(e) => setRole(e.target)} type="text" />
       <br />
       <button onClick={AddUser}>Submit</button>
       <button onClick={login}>login</button>

@@ -8,7 +8,7 @@ import Register from "./components/Register";
 import Login from "./components/login";
 import NotFound from "./components/notFound";
 // import Protected from "./components/protected";
-import Restaurant from "./components/restaurant";
+// import Restaurant from "./components/restaurant";
 
 const Routing = () => {
   return (
@@ -21,7 +21,7 @@ const Routing = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<LandingPage />} />
-          <Route path="/restaurant" element={<Restaurant />} />
+          {/* <Route path="/restaurant" element={<Restaurant />} /> */}
           <Route path="/" element={<NotFound />} />
         </Routes>
       </Router>

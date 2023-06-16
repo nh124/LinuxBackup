@@ -1,8 +1,8 @@
-import Chat from "./components/Chatroom";
+import Router from "./Router";
 function App() {
   return (
     <div>
-      <Chat />
+      <Router />
     </div>
   );
 }
