@@ -2,9 +2,13 @@ import React from "react";
 import LogoImage from "./Assets/Logo.png";
 import { GrClose } from "react-icons/gr";
 
-const Logo = ({ setLeftPanelShow }) => {
+const Logo = ({ setLeftPanelShow, darkMode }) => {
   return (
-    <div className="w-full h-[10%] bg-[#F5F6F9] flex items-center justify-start px-3 relative">
+    <div
+      className={`w-full h-[10%] bg-[#F5F6F9] flex items-center justify-start px-3 relative ${
+        darkMode ? "bg-gray-700" : "bg-[#F5F6F9]"
+      } `}
+    >
       <img className="w-[200px]" src={LogoImage} alt="" />
       <GrClose
         size={20}

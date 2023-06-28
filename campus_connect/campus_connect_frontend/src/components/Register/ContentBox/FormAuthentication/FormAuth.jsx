@@ -11,6 +11,7 @@ const FormAuth = ({
   map_of_field_status,
   setMap_of_field_status,
   usernameMatch,
+  darkMode,
 }) => {
   const [firstNameStatus, setFirstNameStatus] = useState(false);
   const [lastNameStatus, setLastNameStatus] = useState(false);
@@ -82,7 +83,9 @@ const FormAuth = ({
             name="first_name"
             id="fist_name"
             placeholder="First Name"
-            className={`px-1 py-1 focus:outline-none text-gray-700 w-full ${
+            className={`px-1 py-1 focus:outline-none text-gray-700 ${
+              darkMode ? "bg-[#05193a] text-white" : ""
+            } w-full ${
               firstNameStatus ? "border-red-500 border-b-4" : "border-b"
             }`}
             required
@@ -105,7 +108,9 @@ const FormAuth = ({
             name="last_name"
             id="last_name"
             placeholder="Last Name"
-            className={`px-1 py-1 focus:outline-none text-gray-700 w-full ${
+            className={`px-1 py-1 focus:outline-none text-gray-700 ${
+              darkMode ? "bg-[#05193a] text-white" : ""
+            }  w-full ${
               lastNameStatus ? "border-red-500 border-b-4" : "border-b"
             }`}
             required
@@ -128,7 +133,9 @@ const FormAuth = ({
             name="email"
             id="email"
             placeholder="Email"
-            className={`px-1 py-1 focus:outline-none text-gray-700 w-full ${
+            className={`px-1 py-1 focus:outline-none text-gray-700 ${
+              darkMode ? "bg-[#05193a] text-white" : ""
+            }  w-full ${
               emailStatus ? "border-red-500 border-b-4" : "border-b"
             }`}
             required
@@ -151,7 +158,9 @@ const FormAuth = ({
             name="password"
             id="password"
             placeholder="Password"
-            className={`px-1 py-1 focus:outline-none text-gray-700 w-full ${
+            className={`px-1 py-1 focus:outline-none text-gray-700 ${
+              darkMode ? "bg-[#05193a] text-white" : ""
+            }  w-full ${
               passwordStatus ? "border-red-500 border-b-4" : "border-b"
             }`}
             required
@@ -174,7 +183,9 @@ const FormAuth = ({
             name="username"
             id="username"
             placeholder="Username"
-            className={`px-1 py-1 focus:outline-none text-gray-700 w-full ${
+            className={`px-1 py-1 focus:outline-none text-gray-700 ${
+              darkMode ? "bg-[#05193a] text-white" : ""
+            }  w-full ${
               usernameStatus ? "border-red-500 border-b-4" : "border-b"
             }`}
             required
@@ -231,7 +242,7 @@ const FormAuth = ({
         <div className="flex flex-row gap-2 items-center col-span-2">
           <h2 className="text-[#54BEB8]">Already have an account?</h2>
           <button
-            className="text-sm"
+            className={`text-sm ${darkMode ? "text-white" : ""}`}
             type="button"
             onClick={(e) => {
               e.preventDefault();

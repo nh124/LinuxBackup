@@ -27,8 +27,14 @@ const Router = () => {
           />
           <Route path="/register" element={<Register darkMode={darkMode} />} />
           <Route path="/login" element={<Login darkMode={darkMode} />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route
+            path="/home"
+            element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />}
+          />
+          <Route
+            path="/chat"
+            element={<Chat darkMode={darkMode} setDarkMode={setDarkMode} />}
+          />
           <Route path="/restaurant" element={<Restaurant />} />
         </Routes>
       </BrowserRouter>

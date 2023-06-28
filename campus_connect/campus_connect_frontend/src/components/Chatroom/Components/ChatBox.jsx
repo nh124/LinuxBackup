@@ -21,14 +21,21 @@ const ChatBox = ({
   setPrivateChats,
   getUserNames,
   stompClient,
+  darkMode,
 }) => {
   const [showRightPanel, setShowRightPanel] = useState(false);
   return (
-    <div className="flex flex-col w-[90%] h-screen max-md:w-full relative">
+    <div
+      className={`flex flex-col w-[90%] h-screen max-md:w-full relative ${
+        darkMode ? "bg-gray-800 text-gray-200" : ""
+      }`}
+    >
       {/* current usersEntity */}
       <div
         id="CurrentUser"
-        className="w-full h-[8%] border border-b-slate-300 flex items-center justify-between py-1"
+        className={`w-full h-[8%] border-l border-b ${
+          darkMode ? "border-gray-600" : "border-b-slate-300"
+        }  flex items-center justify-between py-1`}
       >
         <div className="w-[300px] flex flex-row px-4 h-[100%] items-center gap-2">
           <div
@@ -74,16 +81,19 @@ const ChatBox = ({
               sendPrivateMessages={sendPrivateMessages}
               showRightPanel={showRightPanel}
               getUserNames={getUserNames}
+              darkMode={darkMode}
             />
           )}
           {User === "CHATROOM" && (
             <PublicChatMessages
+              cChatMessages
               userData={userData}
               ChatLogPublic={ChatLogPublic}
               handleMessage={handleMessage}
               sendPublicMessages={sendPublicMessages}
               showRightPanel={showRightPanel}
               getUserNames={getUserNames}
+              darkMode={darkMode}
             />
           )}
         </div>
@@ -95,6 +105,7 @@ const ChatBox = ({
           getUserNames={getUserNames}
           stompClient={stompClient}
           showRightPanel={showRightPanel}
+          darkMode={darkMode}
         />
       </div>
     </div>

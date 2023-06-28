@@ -10,6 +10,7 @@ const PrivateChatMessages = ({
   User,
   showRightPanel,
   getUserNames,
+  darkMode,
 }) => {
   const timeConverter = (timeDate) => {
     if (timeDate === undefined) {
@@ -100,7 +101,11 @@ const PrivateChatMessages = ({
                         {getUserNames(chat.userId)}
                       </span>
                     </div>
-                    <div className="py-1 px-4 bg-[#dddddd] rounded-br-xl rounded-tr-xl rounded-tl-xl text-black max-w-[90%] break-words max-2xl:text-lg max-lg:text-base">
+                    <div
+                      className={`py-1 px-4 ${
+                        darkMode ? "bg-gray-700 text-white" : "bg-[#dddddd]"
+                      }  rounded-br-xl rounded-tr-xl rounded-tl-xl text-black max-w-[90%] break-words max-2xl:text-lg max-lg:text-base`}
+                    >
                       <p>{chat.message}</p>
                     </div>
 
@@ -115,9 +120,18 @@ const PrivateChatMessages = ({
           );
         })}
       </div>
-      <div id="messageTypeBox" className="px-3 py-3 border-t flex items gap-3">
+      <div
+        id="messageTypeBox"
+        className={`px-3 py-3 border-t ${
+          darkMode ? "border-gray-600" : ""
+        }  flex items gap-3`}
+      >
         <input
-          className={`border border-slate-300 rounded-3xl py-2 pl-5 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm ml-3 w-[95%] overflow-auto`}
+          className={`border ${
+            darkMode
+              ? "bg-[#4F5665] border-slate-500 focus:border-gray-400 focus:ring-gray-400 "
+              : "bg-white border-slate-300 focus:border-sky-500 focus:ring-sky-500"
+          }  border-slate-300 rounded-3xl py-2 pl-5 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm ml-3 w-[95%] overflow-auto`}
           type="text"
           placeholder="Start a new message"
           onChange={handleMessage}

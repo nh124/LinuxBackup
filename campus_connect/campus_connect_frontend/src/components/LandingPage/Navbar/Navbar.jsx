@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-scroll";
 import { BsPersonFill, BsFillMoonFill } from "react-icons/bs";
@@ -9,7 +9,10 @@ import { RxCross1 } from "react-icons/rx";
 const Navbar = ({ setDarkMode, darkMode }) => {
   const [dropDown, setDropDown] = useState(false);
   const [showSidePanel, setShowSidePanel] = useState(false);
-  const auth_token = localStorage.getItem("auth_token");
+  let auth_token;
+  useEffect(() => {
+    auth_token = localStorage.getItem("auth_token");
+  }, []);
   const [subMany, setSubMany] = useState(false);
   localStorage.setItem("darkMode", darkMode);
   return (

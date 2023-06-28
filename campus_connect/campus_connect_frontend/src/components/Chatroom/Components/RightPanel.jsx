@@ -13,6 +13,7 @@ const RightPanel = ({
   getUserNames,
   stompClient,
   showRightPanel,
+  darkMode,
 }) => {
   const [newMessage, setNewMessage] = useState(false);
   const [state, setState] = useState(-1);
@@ -34,18 +35,22 @@ const RightPanel = ({
   };
   return (
     <div
-      className={`flex w-[20%] h-[100%] bg-[#FAFAFA] flex-col max-2xl:w-[25%] max-xl:w-[60%] max-lg:w-[40%] max-sm:w-[50%]  max-md:${
-        showRightPanel ? "absolute right-0" : "hidden"
-      }`}
+      className={`flex w-[20%] h-[100%]  flex-col max-2xl:w-[25%] max-xl:w-[60%] max-lg:w-[40%] max-sm:w-[50%] ${
+        darkMode ? "bg-gray-800" : "bg-[#FAFAFA]"
+      }  max-md:${showRightPanel ? "absolute right-0" : "hidden"}`}
     >
-      <div className="w-full h-[10%] bg-[#FAFAFA] flex flex-col max-sm:h-[20%]">
-        <div className="text-xl font-bold h-[100%] flex items-center px-3 max-lg:text-base text-gray-700 max-sm:text-xs">
+      <div className="w-full h-[10%] flex flex-col max-sm:h-[20%]">
+        <div
+          className={`text-xl font-bold h-[100%] flex items-center px-3 max-lg:text-base ${
+            darkMode ? "text-gray-300" : "text-gray-700"
+          }text-gray-700 max-sm:text-xs`}
+        >
           <span>Start a conversation</span>
         </div>
         <div
           className={`h-[100%] flex flex-row border border-l-0 border-r-0 justify-center items-center ${
-            showSearchBar ? "px-3" : ""
-          }`}
+            darkMode ? "border-gray-600" : ""
+          }  ${showSearchBar ? "px-3" : ""}`}
         >
           <div
             className={`flex flex-row w-full ${
@@ -53,13 +58,21 @@ const RightPanel = ({
             } `}
           >
             <div
-              className={`w-full h-[100%] flex flex-col items-center px-2 py-2 border-r hover:bg-[#b4b3b3] hover:cursor-pointer overflow-hidden`}
+              className={`w-full h-[100%] flex flex-col items-center px-2 py-2 border-r ${
+                darkMode ? "hover:bg-gray-700" : "hover:bg-[#b4b3b3]"
+              }  hover:cursor-pointer overflow-hidden ${
+                darkMode ? "border-gray-600" : ""
+              }`}
               onClick={() => setShowSearchBar(true)}
             >
               <AiOutlineSearch size={20} />
               <span className="text-xs">Search</span>
             </div>
-            <div className="w-full h-[100%] flex flex-col items-center px-2 py-2 hover:bg-[#b4b3b3] hover:cursor-pointer overflow-hidden">
+            <div
+              className={`w-full h-[100%] flex flex-col items-center px-2 py-2 ${
+                darkMode ? "hover:bg-gray-700" : "hover:bg-[#b4b3b3]"
+              }  hover:cursor-pointer overflow-hidden`}
+            >
               <MdNotificationsActive size={20} />
               <span className="text-xs">Notification</span>
             </div>
@@ -67,7 +80,11 @@ const RightPanel = ({
 
           <div className={`py-3 ${showSearchBar ? "flex" : "hidden"} w-full`}>
             <input
-              className="border border-slate-300 rounded-3xl py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm w-full"
+              className={`border border-slate-300 rounded-3xl py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm w-full ${
+                darkMode
+                  ? "bg-[#4F5665] border-slate-500 focus:border-gray-400 focus:ring-gray-400 "
+                  : "bg-white border-slate-300 focus:border-sky-500 focus:ring-sky-500"
+              }`}
               style={{ zIndex: 0 }}
               type="text"
               placeholder="Search People..."
@@ -82,7 +99,7 @@ const RightPanel = ({
           </div>
         </div>
       </div>
-      <div className="w-full h-[100%] bg-[#FAFAFA] overflow-auto flex flex-col">
+      <div className="w-full h-[100%] overflow-auto flex flex-col">
         {/* users */}
         <div className="flex flex-row gap-1 px-1 py-2 text-xs items-center">
           <div className="w-[2%] bg-black h-[1px]"></div>
@@ -94,7 +111,7 @@ const RightPanel = ({
           const name = user.firstName + " " + user.lastName;
           return search.toLowerCase() === ""
             ? user
-            : name.toLowerCase().includes(search);
+            : name.toLowerCase().includes(search.toLowerCase());
         }).map((user, index) => {
           if (
             !Array.from(UserInformation.keys()).includes(
@@ -117,7 +134,9 @@ const RightPanel = ({
                     <span className="text-xs">{user.role}</span>
                   </div>
                   <div
-                    className="w-[20%] flex justify-center items-center rounded-full h-[80%] hover:bg-[#dfdede] hover:cursor-pointer"
+                    className={`w-[20%] flex justify-center items-center rounded-full h-[80%] ${
+                      darkMode ? "hover:bg-gray-700" : "hover:bg-[#dfdede]"
+                    }  hover:cursor-pointer`}
                     onClick={() => {
                       setNewMessage(!newMessage);
                       setState(index);
@@ -134,13 +153,21 @@ const RightPanel = ({
                   <div className="w-[100%]">
                     <input
                       type="text"
-                      className="w-[100%] border border-blue-400 rounded-lg text-black px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
+                      className={`w-[100%] border rounded-lg text-black px-3 focus:outline-none  focus:ring-1 ${
+                        darkMode
+                          ? "bg-[#4F5665] border-slate-500 focus:border-gray-400 focus:ring-gray-400 text-white"
+                          : "bg-white border-slate-300 focus:border-sky-500 focus:ring-sky-500"
+                      }`}
                       onChange={(e) => setMessages(e.target.value)}
                     />
                   </div>
                   <div className="w-[30%] flex justify-center items-center">
                     <button
-                      className="rounded-md px-1 border border-blue-400 text-blue-400 hover:bg-blue-300 hover:text-white hover:cursor-pointer duration-300"
+                      className={`rounded-md px-1 border border-gray-400 text-gray-400 ${
+                        darkMode
+                          ? "hover:bg-gray-700 hover:text-slate-300"
+                          : "hover:bg-gray-300 hover:text-slate-700"
+                      }  hover:cursor-pointer duration-300`}
                       onClick={() => {
                         sendPrivateMessage(user.id);
                       }}

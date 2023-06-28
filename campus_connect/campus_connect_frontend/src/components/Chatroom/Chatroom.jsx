@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
-import Messages from "./Components/Messages";
+import Messages from "./Components/Messages/Messages";
 import ChatBox from "./Components/ChatBox";
 import Loading from "./Loading";
 import { UserConversations } from "./API/UserConversation";
@@ -9,7 +9,7 @@ import { getAllUsers } from "./API/GetAllUsers";
 import { userDetails } from "./API/UserDetails";
 import axios from "axios";
 
-function Chatroom() {
+function Chatroom({ darkMode, setDarkMode }) {
   const [userData, setUserData] = useState({
     user_id: "",
     name: "",
@@ -227,16 +227,18 @@ function Chatroom() {
   return (
     <>
       {stompClient === null ? (
-        <Loading connect={connect} />
+        <Loading connect={connect} darkMode={darkMode} userData={userData} />
       ) : (
         <div className="flex flex-row w-full h-screen relative">
           <Messages
+            setDarkMode={setDarkMode}
             setLSideMenu={setLSideMenu}
             LSideMenu={LSideMenu}
             UserInformation={privateChats}
             setUser={setTab}
             UserData={userData}
             User={tab}
+            darkMode={darkMode}
           />
           <ChatBox
             UserInformation={privateChats}
@@ -253,6 +255,7 @@ function Chatroom() {
             handleMessage={handleMessage}
             getUserNames={getUserNames}
             stompClient={stompClient}
+            darkMode={darkMode}
           />
         </div>
       )}

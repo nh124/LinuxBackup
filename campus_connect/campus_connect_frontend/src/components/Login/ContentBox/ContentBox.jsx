@@ -3,7 +3,7 @@ import OAuth from "./OAuthAuthentication/OAuth";
 import FormAuth from "./FormAuthentication/FormAuth";
 import axios from "axios";
 import { RiHomeLine } from "react-icons/ri";
-const ContentBox = ({ darkMode }) => {
+const ContentBox = ({ darkMode, setPopUpActive }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [map_of_field_status, setMap_of_field_status] = useState(
@@ -46,7 +46,7 @@ const ContentBox = ({ darkMode }) => {
       }`}
     >
       <div className="w-full h-[80%] flex flex-col px-4 py-4 justify-center items-center">
-        <OAuth darkMode={darkMode} />
+        <OAuth darkMode={darkMode} setPopUpActive={setPopUpActive} />
         <div className="w-full h-[20%] flex justify-center items-center text-[#54BEB8]">
           -OR-
         </div>

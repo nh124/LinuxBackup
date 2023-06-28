@@ -23,7 +23,9 @@ const Contributors = ({ darkMode }) => {
           {contributors.map((contributor, index) => (
             <div
               key={index}
-              className="w-full h-[30%] rounded-md shadow-sm hover:shadow-lg duration-300 flex flex-row justify-start items-center border px-3 py-3"
+              className={`w-full h-[30%] rounded-md shadow-sm hover:shadow-lg duration-300 flex flex-row justify-start items-center border px-3 py-3 ${
+                darkMode ? "bg-[#282a2e] border-gray-600 hover:shadow-xl" : ""
+              }`}
             >
               <img
                 className="w-[40%]"

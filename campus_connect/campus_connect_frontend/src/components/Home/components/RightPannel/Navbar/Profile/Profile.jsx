@@ -9,11 +9,14 @@ const Profile = ({
   userData,
   showRightPanel,
   setShowRightPanel,
+  darkMode,
 }) => {
   return (
     <div className="h-[100%] w-[220px] flex flex-row">
       <div
-        className="flex flex-row items-center justify-center h-[100%] w-full gap-2 hover:cursor-pointer border border-r-0 border-b-0"
+        className={`flex flex-row items-center justify-center h-[100%] w-full gap-2 hover:cursor-pointer border border-t-0 border-r-0 border-b-0 ${
+          darkMode ? "border-gray-600" : ""
+        } `}
         onClick={() => setStatus(!status)}
       >
         <div className=" rounded-full max-md:hidden">

@@ -3,7 +3,7 @@ import OAuth from "./OAuthAuthentication/OAuth";
 import FormAuth from "./FormAuthentication/FormAuth";
 import axios from "axios";
 import { RiHomeLine } from "react-icons/ri";
-const ContentBox = () => {
+const ContentBox = ({ darkMode, setPopUpActive }) => {
   const [fist_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [email, setEmail] = useState("");
@@ -11,6 +11,7 @@ const ContentBox = () => {
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
   const [emptyField, setEmptyField] = useState([]);
+
   const [map_of_field_status, setMap_of_field_status] = useState(
     new Map([
       ["firstname", false],
@@ -22,6 +23,7 @@ const ContentBox = () => {
     ])
   );
   const [usernameMatch, setUsernameMatch] = useState(false);
+
   const AddUser = () => {
     const data = {
       fistname: fist_name,
@@ -63,9 +65,13 @@ const ContentBox = () => {
   };
 
   return (
-    <div className="w-[50%] h-screen absolute z-10 bg-white right-0 rounded-tl-3xl rounded-bl-3xl shadow-lg flex justify-center items-center max-md:w-full">
+    <div
+      className={`w-[50%] h-screen absolute z-10 right-0 rounded-tl-3xl rounded-bl-3xl shadow-lg flex justify-center items-center max-md:w-full max-md:rounded-none ${
+        darkMode ? "bg-[#05193a]" : "bg-white"
+      }`}
+    >
       <div className="w-full h-[80%] flex flex-col px-4 py-4 justify-center items-center">
-        <OAuth />
+        <OAuth darkMode={darkMode} setPopUpActive={setPopUpActive} />
         <div className="w-full h-[20%] flex justify-center items-center text-[#54BEB8]">
           -OR-
         </div>
@@ -80,16 +86,18 @@ const ContentBox = () => {
           map_of_field_status={map_of_field_status}
           setMap_of_field_status={setMap_of_field_status}
           usernameMatch={usernameMatch}
-        />
-        <RiHomeLine
-          size={30}
-          className="absolute top-4 right-4 hover:cursor-pointer"
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = "/";
-          }}
+          darkMode={darkMode}
         />
       </div>
+      <RiHomeLine
+        size={30}
+        className="absolute top-4 right-4 hover:cursor-pointer"
+        color={`${darkMode ? "white" : "black"}`}
+        onClick={(e) => {
+          e.preventDefault();
+          window.location.href = "/";
+        }}
+      />
     </div>
   );
 };

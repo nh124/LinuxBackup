@@ -9,12 +9,17 @@ const Navbar = ({
   showRightPanel,
   setShowRightPanel,
   setLeftPanelShow,
+  darkMode,
 }) => {
   useEffect(() => {
     console.log(status);
   }, [status]);
   return (
-    <div className="w-full h-[5%] bg-white flex flex-row justify-between items-center relative">
+    <div
+      className={`w-full h-[5%] flex flex-row justify-between border-b items-center border-l  relative ${
+        darkMode ? "bg-gray-800 text-white border-gray-600" : "bg-white"
+      }`}
+    >
       <div className="px-3 w-[10%] flex flex-row gap-2">
         <div
           className="w-full justify-center items-center hidden max-lg:flex hover:cursor-pointer"
@@ -22,7 +27,7 @@ const Navbar = ({
         >
           <AiOutlineMenu size={20} />
         </div>
-        <div className="w-full">
+        <div className="w-full text-lg font-bold">
           <h2>Dashboard</h2>
         </div>
       </div>
@@ -33,6 +38,7 @@ const Navbar = ({
         userData={userData}
         showRightPanel={showRightPanel}
         setShowRightPanel={setShowRightPanel}
+        darkMode={darkMode}
       />
     </div>
   );
