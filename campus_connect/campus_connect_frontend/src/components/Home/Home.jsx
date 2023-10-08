@@ -9,10 +9,11 @@ function Home({ darkMode, setDarkMode }) {
   const [tab, setTab] = useState("Home");
   const auth_token = localStorage.getItem("auth_token");
   const [showEditAbout, setShowEditAbout] = useState(false);
+  const endpoint = process.env.REACT_APP_SERVICE_URI;
 
   const getAuthenticatedUser = () => {
     axios
-      .get("http://localhost:8080/api/v1/access-point/user", {
+      .get(endpoint+"/api/v1/access-point/user", {
         headers: {
           Authorization: `Bearer ${auth_token}`,
         },

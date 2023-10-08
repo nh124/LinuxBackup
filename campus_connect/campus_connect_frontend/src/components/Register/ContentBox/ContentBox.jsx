@@ -4,13 +4,14 @@ import FormAuth from "./FormAuthentication/FormAuth";
 import axios from "axios";
 import { RiHomeLine } from "react-icons/ri";
 const ContentBox = ({ darkMode, setPopUpActive }) => {
-  const [fist_name, setFirst_name] = useState("");
+  const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
   const [emptyField, setEmptyField] = useState([]);
+  const endpoint = process.env.REACT_APP_SERVICE_URI;
 
   const [map_of_field_status, setMap_of_field_status] = useState(
     new Map([
@@ -26,7 +27,7 @@ const ContentBox = ({ darkMode, setPopUpActive }) => {
 
   const AddUser = () => {
     const data = {
-      fistname: fist_name,
+      firstname: first_name,
       lastname: last_name,
       email: email,
       password: password,
@@ -34,7 +35,7 @@ const ContentBox = ({ darkMode, setPopUpActive }) => {
       role: role.toUpperCase(),
     };
     const list_of_fields = [
-      fist_name,
+      first_name,
       last_name,
       email,
       password,
@@ -54,7 +55,7 @@ const ContentBox = ({ darkMode, setPopUpActive }) => {
       console.log(data);
 
       axios
-        .post("http://localhost:8080/api/v1/auth/register", data)
+        .post(endpoint + "/api/v1/auth/register", data)
         .then(() => {
           window.location.href = "/login";
         })

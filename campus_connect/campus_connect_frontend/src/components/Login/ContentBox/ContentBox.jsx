@@ -3,6 +3,7 @@ import OAuth from "./OAuthAuthentication/OAuth";
 import FormAuth from "./FormAuthentication/FormAuth";
 import axios from "axios";
 import { RiHomeLine } from "react-icons/ri";
+const endpoint = process.env.REACT_APP_SERVICE_URI;
 const ContentBox = ({ darkMode, setPopUpActive }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +29,7 @@ const ContentBox = ({ darkMode, setPopUpActive }) => {
       JSON.stringify(data);
 
       axios
-        .post("http://localhost:8080/api/v1/auth/authenticate", data)
+        .post(endpoint + "/api/v1/auth/authenticate", data)
         .then((response) => {
           localStorage.setItem("auth_token", response.data.token);
           window.location.href = `/home`;

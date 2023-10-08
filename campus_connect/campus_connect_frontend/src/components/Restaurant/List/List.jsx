@@ -8,7 +8,7 @@ import {
   FormControl,
   Select,
   MenuItem,
-} from "@material-ui/core";
+} from "@mui/material";
 import useStyles from "./style";
 import PlaceDetails from "../PlaceDetails/PlaceDetails";
 

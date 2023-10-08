@@ -1,10 +1,11 @@
 import axios from "axios";
 const auth_token = localStorage.getItem("auth_token");
+const endpoint = process.env.REACT_APP_SERVICE_URI;
 
 export function userDetails() {
   try {
     const promise = axios.get(
-      `http://localhost:8080/api/v1/access-point/user`,
+      endpoint + `/api/v1/access-point/user`,
       {
         headers: {
           Authorization: `Bearer ${auth_token}`,

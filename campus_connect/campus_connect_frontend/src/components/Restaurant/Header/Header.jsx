@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React from "react";
 // import { Autocomplete } from "@react-google-maps/api";
-import { AppBar, Toolbar, Typography, InputBase, Box } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
+import { AppBar, Toolbar, Typography, InputBase, Box } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import useStyles from "./style";
 
 export default function Header() {

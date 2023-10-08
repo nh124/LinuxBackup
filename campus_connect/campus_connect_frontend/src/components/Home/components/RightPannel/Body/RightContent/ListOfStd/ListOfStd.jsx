@@ -7,10 +7,10 @@ const ListOfStd = ({ darkMode }) => {
   const [hidden, setHidden] = useState(true);
   const auth_token = localStorage.getItem("auth_token");
   const [studentData, setStudentData] = useState([]);
-
+  const endpoint = process.env.REACT_APP_SERVICE_URI;
   const getData = () => {
     axios
-      .get("http://localhost:8080/api/v1/access-point/getUsers", {
+      .get(endpoint + "/api/v1/access-point/getUsers", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${auth_token}`,
@@ -22,6 +22,7 @@ const ListOfStd = ({ darkMode }) => {
         console.log(studentData[0]);
       })
       .catch((error) => {
+        console.log(error);
         window.location.href = "/login";
       });
   };

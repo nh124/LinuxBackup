@@ -5,9 +5,10 @@ const Status = ({ darkMode }) => {
   const [CountStudent, setCountStudent] = useState(0);
   const [CountTeacher, setCountTeacher] = useState(0);
   const auth_token = localStorage.getItem("auth_token");
+  const endpoint = process.env.REACT_APP_SERVICE_URI;
   const CountUser = () => {
     axios
-      .get("http://localhost:8080/api/v1/access-point/UserCount/TEACHER", {
+      .get(endpoint + "/api/v1/access-point/UserCount/TEACHER", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${auth_token}`,
@@ -21,7 +22,7 @@ const Status = ({ darkMode }) => {
         window.location.href = "/login";
       });
     axios
-      .get("http://localhost:8080/api/v1/access-point/UserCount/STUDENT", {
+      .get(endpoint + "/api/v1/access-point/UserCount/STUDENT", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${auth_token}`,

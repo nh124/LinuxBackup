@@ -2,11 +2,12 @@ import axios from "axios";
 
 // export let PublicMessages = [];
 const auth_token = localStorage.getItem("auth_token");
+const endpoint = process.env.REACT_APP_SERVICE_URI;
 
 export function UserConversations() {
   try {
     const promise = axios.get(
-      `http://localhost:8080/api/v1/access-point/chat/getAllChats`,
+      endpoint + `/api/v1/access-point/chat/getAllChats`,
       {
         headers: {
           Authorization: `Bearer ${auth_token}`,

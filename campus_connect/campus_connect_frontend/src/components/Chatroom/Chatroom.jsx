@@ -8,7 +8,7 @@ import { UserConversations } from "./API/UserConversation";
 import { getAllUsers } from "./API/GetAllUsers";
 import { userDetails } from "./API/UserDetails";
 import axios from "axios";
-
+const endpoint = process.env.REACT_APP_SERVICE_URI;
 function Chatroom({ darkMode, setDarkMode }) {
   const [userData, setUserData] = useState({
     user_id: "",
@@ -158,7 +158,7 @@ function Chatroom({ darkMode, setDarkMode }) {
   }, [AllUsers]);
 
   const connect = () => {
-    const socket = new SockJS("http://localhost:8080/ws");
+    const socket = new SockJS(endpoint+"/ws");
     let stompClientConnect = over(socket);
     stompClientConnect.connect({}, function (frame) {
       setStompClient(stompClientConnect);

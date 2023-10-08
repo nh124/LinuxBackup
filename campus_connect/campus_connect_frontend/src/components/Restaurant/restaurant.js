@@ -1,6 +1,6 @@
 /* eslint-disable */
 import react, { useEffect, useState } from "react";
-import { CssBaseline, Grid } from "@material-ui/core";
+import { CssBaseline, Grid } from "@mui/material";
 import Header from "./Header/Header.jsx";
 import List from "./List/List.jsx";
 import Map from "./Map/Map.jsx";
