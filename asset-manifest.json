@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/campus/static/css/main.5816a283.css",
+    "main.js": "/campus/static/js/main.6f0a9829.js",
+    "index.html": "/campus/index.html",
+    "main.5816a283.css.map": "/campus/static/css/main.5816a283.css.map",
+    "main.6f0a9829.js.map": "/campus/static/js/main.6f0a9829.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5816a283.css",
+    "static/js/main.6f0a9829.js"
+  ]
+}
