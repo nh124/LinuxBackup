@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body onload="loadComplete()">
+    <canvas id="canvas"></canvas>
+    <center>
+      <p id="player1stat">Player 1: 0</p>
+      <p id="player2stat">Player 2: 0</p>
+      <h2>Press up/down/left/right or a/s/d/w to move</h2>
+      <h2>+3 points for picking up a football</h2>
+      <h2>+6 points for running across goal line (game ends)</h2>
+      <button onclick="eraseCanvas();">erase canvas</button>
+      <button onclick="green();">green</button>
+      <button onclick="blue();">blue</button>
+      <button onclick="addAfootball();">add a football</button>
+      <button onclick="drawTiles();">draw tiles</button>
+      <button onclick="drawEndzones();">draw end zones</button>
+      <button onclick="drawSprite(1, myX1, myY1);">draw sprite1</button>
+      <button onclick="eraseSprite(myX1, myY1);">erase sprite1</button>
+      <button onclick="drawSprite(2, myX2, myY2);">draw sprite2</button>
+      <button onclick="eraseSprite(myX2, myY2);">erase sprite2</button>
+      <button onclick="player1Score+=3;">player1 +3 pts</button>
+      <button onclick="player2Score+=3;">player2 +3 pts</button>
+      <button onclick="updateScore();">show scores</button>
+    </center>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>

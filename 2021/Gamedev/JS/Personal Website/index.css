@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    height: 100%;
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-right:1%;
+    padding-bottom: 5%;
+}
+.everything{
+    background-color: lightblue;
+
+}
+.heading{
+
+    width: 100%;
+    height: 200px;
+    background-color: teal;
+    background-image: url(Assets/background.jpg);
+    
+}
+
+.intro{
+    /* border: 5px solid gray; */
+    width: 30%;
+    height: 500px;
+    margin-top: 1%;
+    float: left;
+    margin-right: 1%;
+    padding: 1%;
+    background-color: aqua;
+}
+.links{
+    /* border: 5px solid gray; */
+    width: 69%;
+    margin-top: 1%;
+    height: 500px;
+    float: left;
+    padding: 1%;
+    background-color: burlywood;
+}
+
+.conclusion{
+    /* border: 5px solid gray; */
+    width : 100%;
+    margin-top: 21.5%;
+    height: 100px;
+    padding: 1%;
+    background-color: beige;
+}
+
+.git{
+    float: left;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.lin{
+    float: left;
+    margin-left: 20%;
+}
+.res{
+    float: left;
+    margin-left: 30%;
+}

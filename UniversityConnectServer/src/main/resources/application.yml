@@ -1,0 +1,21 @@
+cors:
+  allowed-origins: "*"
+  allowed-methods: "*"
+  allowed-headers: "*"
+  exposed-headers: "*"
+
+spring:
+  datasource:
+#    url: jdbc:mariadb://campusconnectmariadb.colmscposd8t.us-east-1.rds.amazonaws.com:3306/campus_connect
+    url: jdbc:mariadb://localhost:3306/campus_connect
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql

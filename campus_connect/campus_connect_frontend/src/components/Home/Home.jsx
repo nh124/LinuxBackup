@@ -13,7 +13,7 @@ function Home({ darkMode, setDarkMode }) {
 
   const getAuthenticatedUser = () => {
     axios
-      .get(endpoint+"/api/v1/access-point/user", {
+      .get(endpoint + "/api/v1/access-point/user", {
         headers: {
           Authorization: `Bearer ${auth_token}`,
         },

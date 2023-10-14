@@ -32,7 +32,7 @@ const ContentBox = ({ darkMode, setPopUpActive }) => {
         .post(endpoint + "/api/v1/auth/authenticate", data)
         .then((response) => {
           localStorage.setItem("auth_token", response.data.token);
-          window.location.href = `/home`;
+          window.location.href = `#/home`;
         })
         .catch((error) => {
           responseHandler(error.response.data);
@@ -67,7 +67,7 @@ const ContentBox = ({ darkMode, setPopUpActive }) => {
         color={`${darkMode ? "white" : "black"}`}
         onClick={(e) => {
           e.preventDefault();
-          window.location.href = "/";
+          window.location.href = "/Campus";
         }}
       />
     </div>

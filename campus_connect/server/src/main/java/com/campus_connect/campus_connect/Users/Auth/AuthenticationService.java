@@ -21,7 +21,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     public String register(RegisterRequest request) {
         var user = UsersEntity.builder()
-                .firstName(request.getFistname())
+                .firstName(request.getFirstname())
                 .lastName(request.getLastname())
                 .username(request.getUsername())
                 .email(request.getEmail())

@@ -246,7 +246,7 @@ const FormAuth = ({
             type="button"
             onClick={(e) => {
               e.preventDefault();
-              window.location.href = "/login";
+              window.location.href = "#/login";
             }}
           >
             Login

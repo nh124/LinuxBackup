@@ -25,7 +25,7 @@ const Messages = ({
   const optionDis = (option) => {
     if (option === "Logout") {
       return (
-        (window.location.href = "/login"),
+        (window.location.href = "#/login"),
         localStorage.setItem("auth_token", null)
       );
     }
@@ -33,7 +33,7 @@ const Messages = ({
       return setDarkMode(!darkMode);
     }
     if (option === "Profile") {
-      return (window.location.href = "/home");
+      return (window.location.href = "#/home");
     }
   };
   return (

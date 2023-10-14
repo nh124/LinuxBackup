@@ -23,7 +23,7 @@ const ListOfStd = ({ darkMode }) => {
       })
       .catch((error) => {
         console.log(error);
-        window.location.href = "/login";
+        window.location.href = "#/login";
       });
   };
   useEffect(() => {

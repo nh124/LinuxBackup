@@ -57,7 +57,7 @@ const ContentBox = ({ darkMode, setPopUpActive }) => {
       axios
         .post(endpoint + "/api/v1/auth/register", data)
         .then(() => {
-          window.location.href = "/login";
+          window.location.href = "#/login";
         })
         .catch((error) => {
           responseHandler(error.response.data);
@@ -96,7 +96,7 @@ const ContentBox = ({ darkMode, setPopUpActive }) => {
         color={`${darkMode ? "white" : "black"}`}
         onClick={(e) => {
           e.preventDefault();
-          window.location.href = "/";
+          window.location.href = "/Campus";
         }}
       />
     </div>

@@ -1,5 +1,10 @@
 import { React, useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  HashRouter as Routers,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Chat from "./components/Chatroom/Chatroom";
 // import Restaurant from "./components/Restaurant/restaurant";
@@ -19,8 +24,9 @@ const Router = () => {
   }, [darkMode]);
   return (
     <div>
-      <BrowserRouter>
+      <Routers>
         <Routes>
+          <Route path="*" element={<p>Path not resolved</p>} />
           <Route
             path="/"
             element={
@@ -40,7 +46,7 @@ const Router = () => {
           {/* <Route path="/restaurant" element={<Restaurant />} /> */}
           <Route path="/restaurant" element={<TravelAdvisor />} />
         </Routes>
-      </BrowserRouter>
+      </Routers>
     </div>
   );
 };

@@ -26,7 +26,7 @@ const Options = ({ status, darkMode, setDarkMode }) => {
         } w-full px-3 hover:cursor-pointer`}
         onClick={(e) => {
           e.preventDefault();
-          window.location.href = "/login";
+          window.location.href = "#/login";
         }}
       >
         Logout

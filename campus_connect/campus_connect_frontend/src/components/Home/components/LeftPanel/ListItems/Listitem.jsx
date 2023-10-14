@@ -50,7 +50,7 @@ const Listitem = ({
             }  flex justify-start items-center px-3 gap-2 relative group`}
             onClick={(e) => {
               e.preventDefault();
-              window.location.href = "/restaurant";
+              window.location.href = "#/restaurant";
             }}
           >
             {name == "Restaurants" && (
@@ -93,7 +93,7 @@ const Listitem = ({
             }  flex justify-start items-center px-3 gap-2 relative group`}
             onClick={(e) => {
               e.preventDefault();
-              window.location.href = "/chat";
+              window.location.href = "#/chat";
             }}
           >
             {name == "Chat" && <div className="relative z-10">{chat}</div>}

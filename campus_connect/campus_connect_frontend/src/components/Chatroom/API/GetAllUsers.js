@@ -14,6 +14,6 @@ export function getAllUsers() {
     const dataPromise = promise.then((response) => response.data);
     return dataPromise;
   } catch (error) {
-    window.location.href = "/login";
+    window.location.href = "#/login";
   }
 }

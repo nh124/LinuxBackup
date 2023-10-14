@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>Simple Animation</title>
+
+
+
+<script type="application/javascript">
+// <![CDATA[
+var INTERVAL = 50;
+var DEBUG = false; //true;
+
+  var canvas;            // The canvas shown on the page.
+  var ctx;                // The context, used to access the canvas.
+
+  var SpriteRow = 0;      // Row of the graphic to show
+  var SpriteCol = 0;      // Col of the graphic to show
+  var MaxSpriteRow = 8;   // How many rows of images
+  var MaxSpriteCol = 8;  // How many columns of images
+
+  var SpriteX = 100;      // Position of sprite on the canvas
+  var SpriteY = 100;
+
+  var X = 500;
+  var Y = 500;
+  
+  var SpriteWidth = 32;   // Width, Height of each sub-image
+  var SpriteHeight = 32;
+
+  var SpriteImage = new Image();   // Sprite sheet
+  SpriteImage.src   = "Pounce.png";
+
+  var SpriteImage2 = new Image();   // Sprite sheet
+  SpriteImage2.src   = "gsuG.png";
+
+
+
+// Set up a timer to execute every 50 ms.
+var myInterval;
+
+
+function eraseSprite() {
+  // erase sprite
+  ctx.clearRect(X, Y, SpriteWidth, SpriteHeight);
+}
+function drawSprite() {
+  // draw sprite
+  //ctx.drawImage(SpriteImage, SpriteX, SpriteY);
+  ctx.drawImage(SpriteImage, SpriteCol * SpriteWidth, SpriteRow * SpriteHeight, 
+    SpriteWidth, SpriteHeight, X, Y, SpriteWidth, SpriteHeight); 
+
+  // update the next image to show
+  //SpriteCol++;
+  if (SpriteCol >= MaxSpriteCol)
+    SpriteCol = 0;
+}
+
+function eraseSpriteG() {
+  // erase sprite
+  ctx.clearRect(SpriteX, SpriteY, SpriteWidth, SpriteHeight);
+}
+function drawSpriteG() {
+  // draw sprite
+  //ctx.drawImage(SpriteImage, SpriteX, SpriteY);
+  ctx.drawImage(SpriteImage2, SpriteCol * SpriteWidth, SpriteRow * SpriteHeight, 
+    SpriteWidth, SpriteHeight, SpriteX, SpriteY, SpriteWidth, SpriteHeight); 
+
+  // update the next image to show
+  //SpriteCol++;
+  if (SpriteCol >= MaxSpriteCol)
+    SpriteCol = 0;
+}
+
+
+
+
+
+
+function Tick() {
+
+  // Erase the sprite from its current location.
+  eraseSprite();
+  eraseSpriteG();
+  // Show a new image
+  drawSprite();
+  drawSpriteG();
+ 
+}
+
+
+function loadComplete() {
+  console.log("Load is complete."); 
+  canvas = document.getElementById("theCanvas");
+  ctx = canvas.getContext("2d");
+  myInterval = self.setInterval(function(){Tick()}, INTERVAL);
+}
+
+// function distCalc(X, Y, SpriteX, SpriteY){
+//   if(Math.abs(X - SpriteX) <= 22 && Math.abs(X - SpriteX) != 400){
+//     console.log("Math.abs(X - SpriteX) = " + Math.abs(X - SpriteX));
+//     if(X < SpriteX){
+//       X = 0;
+//     }else if(X > SpriteX){
+//       X = 0;
+//     }
+//   }
+//   if(Math.abs(Y - SpriteY) <= 22 && Math.abs(X - SpriteX) != 400){
+//     console.log("Math.abs(Y - SpriteY) = " + Math.abs(Y - SpriteY));
+//     if(Y < SpriteY){
+//       Y = 0;
+//     }else if(X > SpriteX){
+//       Y = 0;
+//     }
+//   }
+//   if(Math.abs(X - SpriteX) <= 22  && Math.abs(X - SpriteX) != 400){
+//     console.log("Math.abs(X - SpriteX) = " + Math.abs(X - SpriteX));
+//     if(SpriteX < X){
+//       SpriteX--;
+//     }else if(SpriteX > X){
+//       SpriteX++;
+//     }
+//   }
+//   if(Math.abs(Y - SpriteY) <= 22  && Math.abs(X - SpriteX) != 400){
+//     console.log("Math.abs(Y - SpriteY) = " + Math.abs(Y - SpriteY));
+//     if(SpriteY < Y){
+//       SpriteY--;
+//     }else if(SpriteX > X){
+//       SpriteY++;
+//     }
+//   }
+
+// }
+
+
+// What to do when the user presses a key.
+function whenKeyPressed(key) {
+  switch (key) {
+    // ---------------------------------------------------------------------------------------------//
+    case 28:  // Right arrow was pressed
+      X++;
+      if(X > 640){
+        SpriteX = 100;
+      }
+      if(Math.abs(X - SpriteX) <= 22 && Math.abs(X - SpriteX) != 400){
+         X = 0;
+      }
+      break;
+    // ---------------------------------------------------------------------------------------------//    
+    case 29:  // Left arrow, ASCII 29 
+      X--;
+      if(X < 0){
+        X = 0;
+      }
+      if(Math.abs(Y - SpriteY) <= 22 && Math.abs(X - SpriteX) != 400){
+        Y = 0
+      }
+      break; 
+    // ---------------------------------------------------------------------------------------------//
+    case 30:  // Up arrow was pressed 
+      // Go up a row
+      Y--;
+      if(Y < 0){
+        Y = 0;
+      }
+      if(Math.abs(X - SpriteX) <= 22  && Math.abs(X - SpriteX) != 400){
+        SpriteX = 0;
+      }
+     break;
+    // ---------------------------------------------------------------------------------------------//
+    case 31:  // Down arrow was pressed 
+      Y++;
+      if(Y > 480){
+        Y = 100; 
+      }
+    if(Math.abs(Y - SpriteY) <= 22  && Math.abs(X - SpriteX) != 400){
+      SpriteY = 0;
+    }
+    break;
+    
+  }
+}
+
+function whenKeyPressed2(key) {
+  switch (key) {
+    case 42:  // Right arrow was pressed
+      SpriteX++;
+      if(SpriteX > 640){
+        SpriteX = 100;
+      }
+      if(Math.abs(X - SpriteX) <= 22 && Math.abs(X - SpriteX) != 400){
+         X = 0;
+      }
+      break;
+    case 40:  // Left arrow, ASCII 29 
+      SpriteX--;
+      if(SpriteX < 0){
+        SpriteX = 0;
+      }
+      if(Math.abs(Y - SpriteY) <= 22 && Math.abs(Y - SpriteY) != 400){
+         Y = 0;
+      }
+      break; 
+    case 41:  // Up arrow was pressed 
+      // Go up a row
+      SpriteY--;
+      if(SpriteY < 0){
+        SpriteY = 0;
+      }
+      if(Math.abs(X - SpriteX) <= 22 && Math.abs(X - SpriteX) != 400){
+        SpriteX = 0;
+      }
+      break;;
+    case 43:  // Down arrow was pressed 
+    SpriteY++;
+      if(SpriteY > 480){
+        SpriteY = 100;
+      }
+      if(Math.abs(Y - SpriteY) <= 22 && Math.abs(Y - SpriteY) != 400){
+         SpriteY = 0;
+      }
+      break;
+  }
+}
+///]]>
+</script>
+
+</head>
+<body onload="loadComplete()" bgcolor="#0f0000" text="#ffffff">
+
+<center>
+  <canvas id="theCanvas" tabindex="1" width="640" height="480"></canvas>
+<h2>Press up/down to see different rows</h2>
+</center>
+
+<script type="application/javascript">
+  //
+  // Set up a function to handle key-presses.
+  //
+  // This should work across most browsers.
+  document['onkeydown'] = function(event) {
+    event = event || window.event;
+    var key = event.which || event.cursor;
+    // Check for a special key value, and map it to ASCII.
+    switch (key) {
+      case 37:  // Left arrow, ASCII 29 
+        key = 29;
+        break;
+      case 38:  // Up arrow, ASCII 30
+        key = 30;
+        break;
+      case 39:  // Right arrow, ASCII 28  
+        key = 28;
+        break; 
+      case 40:  // Down arrow, ASCII 31
+        key = 31;
+        break;
+    }
+
+    switch (key) {
+      case 65:  // Left arrow, ASCII 29 A
+        key = 40; //left
+        break;
+      case 87:  // Up arrow, ASCII 30 W
+        key = 41; //up
+        break;
+      case 68:  // Right arrow, ASCII 28  D
+        key = 42; // right
+        break; 
+      case 83:  // Down arrow, ASCII 31 S
+        key = 43; //down
+        break;
+    }
+
+
+    //document.getElementById("keydown").innerHTML =
+    //  " key Down event, keycode " + key;
+    whenKeyPressed(key);
+    whenKeyPressed2(key);
+   
+    
+  };
+</script>
+
+
+</body></html>

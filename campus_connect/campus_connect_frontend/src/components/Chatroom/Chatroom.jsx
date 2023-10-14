@@ -1,14 +1,15 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
 import Messages from "./Components/Messages/Messages";
 import ChatBox from "./Components/ChatBox";
 import Loading from "./Loading";
-import { UserConversations } from "./API/UserConversation";
-import { getAllUsers } from "./API/GetAllUsers";
-import { userDetails } from "./API/UserDetails";
-import axios from "axios";
+// import { UserConversations } from "./API/UserConversation";
+// import { getAllUsers } from "./API/GetAllUsers";
+// import { userDetails } from "./API/UserDetails";
 const endpoint = process.env.REACT_APP_SERVICE_URI;
+const auth_token = localStorage.getItem("auth_token");
 function Chatroom({ darkMode, setDarkMode }) {
   const [userData, setUserData] = useState({
     user_id: "",
@@ -91,8 +92,10 @@ function Chatroom({ darkMode, setDarkMode }) {
     });
     return listOfMessages;
   };
-  const redirect = () => {
-    window.location.href = "/login";
+  const redirect = (err) => {
+    // window.location.href = "#/login";
+    console.log(err);
+    // console.log("Bearer" + auth_token);
   };
   const PrivateMessagesHandler = (response) => {
     let users = [];
@@ -120,14 +123,24 @@ function Chatroom({ darkMode, setDarkMode }) {
   };
 
   const getAllUsersHandler = () => {
-    getAllUsers()
+    axios
+      .get(endpoint + "/api/v1/access-point/getUsers", {
+        headers: {
+          Authorization: `Bearer ${auth_token}`,
+        },
+      })
       .then((response) => {
         setAllUsers(response);
       })
-      .catch((err) => redirect());
+      .catch((err) => redirect(err));
   };
   const userDetailsHandler = () => {
-    userDetails()
+    axios
+      .get(endpoint + "/api/v1/access-point/user", {
+        headers: {
+          Authorization: `Bearer ${auth_token}`,
+        },
+      })
       .then((response) => {
         const data = {
           user_id: response.id,
@@ -136,29 +149,39 @@ function Chatroom({ darkMode, setDarkMode }) {
         };
         setUserData(data);
       })
-      .catch((err) => redirect());
+      .catch((err) => redirect(err));
   };
 
   useEffect(() => {
     userDetailsHandler();
     getAllUsersHandler();
-    UserConversations()
+    axios
+      .get(endpoint + "/api/v1/access-point/chat/getAllChats", {
+        headers: {
+          Authorization: `Bearer ${auth_token}`,
+        },
+      })
       .then((response) => {
         PublicMessagesHandler(response);
       })
-      .catch((err) => redirect());
+      .catch((err) => redirect(err));
   }, []);
 
   useEffect(() => {
-    UserConversations()
+    axios
+      .get(endpoint + "/api/v1/access-point/chat/getAllChats", {
+        headers: {
+          Authorization: `Bearer ${auth_token}`,
+        },
+      })
       .then((response) => {
         PrivateMessagesHandler(response);
       })
-      .catch((err) => redirect());
+      .catch((err) => redirect(err));
   }, [AllUsers]);
 
   const connect = () => {
-    const socket = new SockJS(endpoint+"/ws");
+    const socket = new SockJS(endpoint + "/ws");
     let stompClientConnect = over(socket);
     stompClientConnect.connect({}, function (frame) {
       setStompClient(stompClientConnect);

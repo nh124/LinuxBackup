@@ -1,0 +1,19 @@
+body{
+    background: black;
+}
+
+#canvas{
+    position: absolute;
+    border: 3px solid white;
+    width: 800px;
+    height: 700px;
+    transform: translateY(-50%, -50%);
+    top: 5%;
+    left: 25%;
+}
+
+
+
+
+
+

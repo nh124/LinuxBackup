@@ -19,7 +19,7 @@ const Status = ({ darkMode }) => {
         setCountTeacher(response.data);
       })
       .catch((error) => {
-        window.location.href = "/login";
+        window.location.href = "#/login";
       });
     axios
       .get(endpoint + "/api/v1/access-point/UserCount/STUDENT", {
@@ -33,7 +33,7 @@ const Status = ({ darkMode }) => {
         setCountStudent(response.data);
       })
       .catch((error) => {
-        window.location.href = "/login";
+        window.location.href = "#/login";
       });
   };
   useEffect(() => {

@@ -1,4 +1,4 @@
-package com.campus_connect.campus_connect.Users.Config;
+package com.universit.UniversityConnectServer.Users.Config;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -58,6 +58,7 @@ public class JWTServices {
     }
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String username = getUsername(token);
+        System.out.println(username.equals(userDetails.getUsername()));
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 

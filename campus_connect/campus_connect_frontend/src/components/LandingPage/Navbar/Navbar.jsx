@@ -83,7 +83,7 @@ const Navbar = ({ setDarkMode, darkMode }) => {
                   className="text-slate-400 hover:text-white duration-300"
                   onClick={(e) => {
                     e.preventDefault();
-                    window.location.href = "/login";
+                    window.location.href = "#/login";
                   }}
                 >
                   Login
@@ -94,7 +94,7 @@ const Navbar = ({ setDarkMode, darkMode }) => {
                   className="text-slate-400 hover:text-white duration-300"
                   onClick={(e) => {
                     e.preventDefault();
-                    window.location.href = "/register";
+                    window.location.href = "#/register";
                   }}
                 >
                   Register
@@ -228,7 +228,7 @@ const Navbar = ({ setDarkMode, darkMode }) => {
               className="text-slate-400 hover:text-white duration-300"
               onClick={(e) => {
                 e.preventDefault();
-                window.location.href = "/login";
+                window.location.href = "#/login";
               }}
             >
               Login
@@ -240,7 +240,7 @@ const Navbar = ({ setDarkMode, darkMode }) => {
               className="text-slate-400 hover:text-white duration-300"
               onClick={(e) => {
                 e.preventDefault();
-                window.location.href = "/register";
+                window.location.href = "#/register";
               }}
             >
               Register

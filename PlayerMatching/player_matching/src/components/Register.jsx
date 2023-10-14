@@ -33,7 +33,7 @@ const Register = () => {
       axios
         .post("http://127.0.0.1:5000/register", data)
         .then(function (response) {
-          console.log(response.status);
+          window.location.href = "/verify";
         })
         .catch(function (error) {
           console.log(error);

@@ -44,9 +44,11 @@ public class JWTServices {
         return claimsResolver.apply(claims);
     }
     public String generateToken(UserDetails userDetails){
+        System.out.println(userDetails.getUsername());
         return generateToken(new HashMap<>(), userDetails);
     }
     public String generateToken(Map<String, Objects> extraClaims, UserDetails userDetails){
+        System.out.println(userDetails.getUsername());
         return Jwts
                 .builder()
                 .setClaims(extraClaims)

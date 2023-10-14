@@ -1,5 +1,6 @@
 package com.campus_connect.campus_connect.Users.Config;
 
+
 import com.campus_connect.campus_connect.Users.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfiguration {
 
     public final UserRepository userRepository;
+
+
     @Bean
     public UserDetailsService userDetailsService(){
         return username -> userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));

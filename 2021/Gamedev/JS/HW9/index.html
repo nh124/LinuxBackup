@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+        <title>Sound Example</title>
+        <script type="application/javascript" src="index.js"></script>
+    </head>
+
+    <body onload="showEverything()" bgcolor="#0f0000" text="#ffffff">
+        <center>
+            Sound Example
+            <br>
+                <!-- <canvas id="theCanvas" tabindex="1" width="320" height="240"></canvas> -->
+                <!-- http://stackoverflow.com/questions/3729034/javascript-html5-capture-keycode-and-write-to-canvas -->
+                <script type="application/javascript">
+                document.write('<canvas id="theCanvas" tabindex="1" width="' 
+                    + MAXWIDTH + '" height="'+ MAXHEIGHT + '"></canvas>');
+                </script>
+
+                <font face="monospace" color="white">
+                <p id="status"></p>
+                </font>
+
+                <button type="button" onclick="startButton(); return false"/>Start</button>
+            <br>
+            <br>
+            <audio id="audio1" src="grain_bag.ogg" preload="auto" >
+            </audio>
+            <audio id="audio2" src="napkin_rustling.ogg" preload="auto" >
+            </audio>
+            <audio id="audio3" src="toothpicks.ogg" preload="auto" >
+            </audio>
+            <audio id="audio4" src="glass_rubbing.ogg" preload="auto" >
+            </audio>
+        </center>
+
+    </body>
+</html>

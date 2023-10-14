@@ -23,8 +23,9 @@ load_dotenv(find_dotenv())
 
 app = Flask(__name__)
 CORS(app)
-app.config["SECRET_KEY"] = os.getenv("secretKey")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("LOCAL_DATABASE_URL")
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+# app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("LOCAL_DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@localhost/playerMatching"
 account_sid = os.getenv("TWILIO_ACCOUNT_SID")
 auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 VERIFY_SERVICE_SID = os.getenv("VERIFY_SERVICE_SID")

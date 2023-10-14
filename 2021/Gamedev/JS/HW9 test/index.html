@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sound Game</title>
+        <script type="text/javascript" src="index.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <style>
+            body {
+                background-image: url(Assets/note-of-music-background-template-vector.jpg);
+                background-repeat: no-repeat;
+                padding: 6em;
+                background-size: cover;
+                background-position: center;
+            }
+        </style>
+        <center class="container">
+            <div class="container">
+                <h1 class="FH">Music</h1>
+            </div>
+            <nav>
+                <div class="row1">
+                    <button class="bt1" id="button1" href="#" onclick="getId(this)" >Sound 1</button>
+                    <button class="bt2" id="button2" href="#" onclick="getId(this)" >Sound 2</button>
+                </div>
+                <div class="row2">
+                    <button class="bt3" id="button3" href="#" onclick="getId(this)" >Sound 3</button>
+                    <button class="bt4" id="button4" href="#" onclick="getId(this)" >Sound 4</button>
+                </div>
+                
+                <button class="start" href="#" onclick="play()">start</button>
+                <button class="submit" href="#" onclick="submit()">Submit</button>
+                <button class="refresh" href="#" onclick="refresh()">Refresh</button>
+            </nav>
+        </center> 
+        
+        <center>
+            <div class="container2">
+                <div class="text">
+                    <p>
+                        <h2>
+                            How It Works!
+                        </h2>
+                        <h3>
+                            Press the start button to hear the random sequence of sounds. Afterwards try to 
+                            replicate the sound using the 4 sounds provided. Press submit afterwards. 
+                            Want a different sequence of sounds use the refresh.
+                        </h3>
+                        <h1 class="result" id="done">
+                            CORRECT!!!
+                        </h1>
+                    </p>
+                </div>
+            </div>
+        </center>
+        
+
+    </body>
+</html>
+
+<!-- There is a major flaw with this code. It is
+This issue the random sound that are stored in the array cannot be compared with 
+user is entering. Therefore we need to implement a button called 'submit' which will then initiate checking seq
+to see if what the user just entered is correct or not. -->

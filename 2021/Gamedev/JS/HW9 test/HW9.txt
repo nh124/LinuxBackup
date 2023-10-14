@@ -1,0 +1,306 @@
+---------------------------HTML------------------------------------------------------------------------------<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sound Game</title>
+        <script type="text/javascript" src="index.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <style>
+            body {
+                background-image: url(Assets/note-of-music-background-template-vector.jpg);
+                background-repeat: no-repeat;
+                padding: 6em;
+                background-size: cover;
+                background-position: center;
+            }
+        </style>
+        <center class="container">
+            <div class="container">
+                <h1 class="FH">Music</h1>
+            </div>
+            <nav>
+                <div class="row1">
+                    <button class="bt1" id="button1" href="#" onclick="getId(this)" >Sound 1</button>
+                    <button class="bt2" id="button2" href="#" onclick="getId(this)" >Sound 2</button>
+                </div>
+                <div class="row2">
+                    <button class="bt3" id="button3" href="#" onclick="getId(this)" >Sound 3</button>
+                    <button class="bt4" id="button4" href="#" onclick="getId(this)" >Sound 4</button>
+                </div>
+                
+                <button class="start" href="#" onclick="play()">start</button>
+                <button class="submit" href="#" onclick="submit()">Submit</button>
+                <button class="refresh" href="#" onclick="refresh()">Refresh</button>
+            </nav>
+        </center> 
+        
+        <center>
+            <div class="container2">
+                <div class="text">
+                    <p>
+                        <h2>
+                            How It Works!
+                        </h2>
+                        <h3>
+                            Press the start button to hear the random sequence of sounds. Afterwards try to 
+                            replicate the sound using the 4 sounds provided. Press submit afterwards. 
+                            Want a different sequence of sounds use the refresh.
+                        </h3>
+                        <h1 class="result" id="done">
+                            CORRECT!!!
+                        </h1>
+                    </p>
+                </div>
+            </div>
+        </center>
+        
+
+    </body>
+</html>
+----------------------------------CSS------------------------------------------------------------------------------------
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
+
+*{
+    font-family: 'Source Sans Pro' , sans-serif;
+    letter-spacing: 4px;
+   
+}
+
+.container{
+    color: white;
+    text-transform: uppercase;
+    display: block;
+}
+
+.FH{
+    position: absolute;
+    top: 20%;
+    left: 70%;
+    font-size: 70px;
+    text-shadow: 0 5px 10px rgba(0,0,0,1);
+    mix-blend-mode: overlay;
+    
+}
+
+
+.row1{
+    display: flex;
+    text-align: center; 
+    width: 300px;  
+    height: 120px;  
+    padding-top: 300px;  
+    position: relative;
+}
+
+.row2{
+    display: flex;
+    text-align: center;  
+    width: 300px;  
+    height: 120px;  
+    position: relative;
+}
+
+.bt1{
+    width: 300px; 
+    height: 100px;
+    border-top: none;
+    color: white;
+    background-color: rgba(255, 0, 68);
+    border-radius: 4px;
+    margin-right: 20px;
+    font-size: 1rem;
+}
+.bt2{
+    width: 300px; 
+    height: 100px;
+    border-top: none;
+    color: white;
+    background-color: rgba(255, 0, 68);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.bt3{
+    width: 300px; 
+    height: 100px;
+    border-top: none;
+    color: white;
+    background-color: rgba(255, 0, 68);
+    border-radius: 4px;
+    margin-right: 20px;
+    font-size: 1rem;
+}
+
+.bt4{
+    width: 300px; 
+    height: 100px;
+    border-top: none;
+    color: white;
+    background-color: rgba(255, 0, 68);
+    border-radius: 4px;  
+    font-size: 1rem;
+}
+
+.start{
+    width: 300px; 
+    height: 100px;
+    border-top: none;
+    color: white;
+    background-color: rgba(255, 0, 68);
+    border-radius: 4px;  
+    font-size: 2rem;
+    position: relative;
+
+}
+
+.container2{
+    width: 30%;
+    padding: 20px; 
+    position: absolute;
+    border: 2px solid white; 
+    color: white;
+    top: 45%;
+    left: 65%;
+}
+
+.refresh{
+    position: absolute;
+    float: left;
+    left: 25%;
+    top: 57%; 
+    width: 200px; 
+    height: 220px;
+    border-top: none;
+    color: white;
+    background-color: rgba(255, 0, 68);
+    border-radius: 4px;  
+    font-size: 1rem;
+
+}
+.submit{
+    position: absolute;
+    left: 25%;
+    top: 90%;
+    width: 200px; 
+    height: 100px;
+    float: left;
+    border-top: none;
+    color: white;
+    background-color: rgba(255, 0, 68);
+    border-radius: 4px;  
+    font-size: 1rem;
+}
+
+.result{
+    display: block;
+    visibility: hidden;
+}
+
+
+-----------------------------------------------JS----------------------------------------------------------------------------------
+let musicSequencer = 0;
+var myInterval;
+musicCollection = ["Assets/glass_rubbing.ogg", "Assets/toothpicks.ogg", "Assets/grain_bag.ogg", "Assets/napkin_rustling.ogg"];
+
+randomizedMusic = [];
+randomizedMusic.length = 4;
+
+let similarSeries = true;
+playerSeq = [];
+playerSeq.length = 4;
+musicCatalog = 0;
+
+var music1 = new Audio();
+var music2 = new Audio();
+var music3 = new Audio();
+var music4 = new Audio();
+
+var music_v2_1 = new Audio();
+var music_v2_2 = new Audio();
+var music_v2_3 = new Audio();
+var music_v2_4 = new Audio();
+
+function music(music,musicV2, index){
+    random_music_selector = Math.floor(Math.random() * playerSeq.length);
+    music.src = musicCollection[random_music_selector];
+    // randomizedMusic[index] = musicCollection[random_music_selector];
+    randomizedMusic[index] = random_music_selector;
+    musicV2.src = musicCollection[index];
+}
+
+music(music1, music_v2_1, 0);
+music(music2, music_v2_2, 1);
+music(music3, music_v2_3, 2);
+music(music4, music_v2_4, 3);
+
+
+function getId(btn){
+    switch(btn.id){
+        case 'button1':
+            music_v2_1.play();
+            playerSeq[musicCatalog] = 0;  
+            break;
+        case 'button2':
+            music_v2_2.play();
+            playerSeq[musicCatalog] = 1; 
+            break;
+        case 'button3':
+            music_v2_3.play();
+            playerSeq[musicCatalog] = 2; 
+            break;
+        case 'button4':
+            music_v2_4.play();
+            playerSeq[musicCatalog] = 3; 
+            break;
+    }
+    musicCatalog++;  
+}
+
+function start(){
+    switch(musicSequencer){
+        case 0:
+            music1.play();
+            break;
+        case 1:
+            music2.play();
+            break;
+        case 2:
+            music3.play();
+            break;
+        case 3:
+            music4.play();
+            break;
+    }
+    musicSequencer++;
+}
+
+function play() {
+    musicSequencer = 0; 
+    myInterval = self.setInterval(function(){start()}, 1000);
+}
+
+function refresh(){
+    location.reload(true);
+}
+
+function submit(){
+    for(i = 0; i < playerSeq.length; i++){
+        if(playerSeq[i] != randomizedMusic[i]){
+            console.log("playerSeq -> " + playerSeq[i] + "\trandomizedMusic -> " + randomizedMusic[i]);
+                similarSeries = false;
+        }
+    }
+    if(similarSeries == true){
+        document.getElementById('done').style.visibility = 'visible';
+        document.getElementById('done').innerHTML= "CORRECT!";
+    }else if(similarSeries == false){
+        document.getElementById('done').style.visibility = 'visible';
+        document.getElementById('done').innerHTML= "INCORRECT!";
+    }
+       
+}
+
+// url: https://gamedev.cs.gsu.edu/~nhaque2/HW9%20test/

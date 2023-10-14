@@ -1,6 +1,6 @@
-package com.campus_connect.campus_connect.Users.User;
+package com.universit.UniversityConnectServer.Users.User;
 
-import com.campus_connect.campus_connect.Users.AuthAccessPoint.ChatAuthAccess.Model.Chat;
+import com.universit.UniversityConnectServer.Users.AuthAccessPoint.ChatAuthAccess.Model.Chat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -42,10 +42,10 @@ public class UsersEntity implements UserDetails {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
-    @Override
-    public String getPassword() {
-        return null;
-    }
+//    @Override
+//    public String getPassword() {
+//        return null;
+//    }
 
     @Override
     public String getUsername() {

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+    <title>Movement with enemies</title>
+
+    <!-- 
+drawImage example
+
+-Michael Weeks, April 2021
+-->
+
+    <script type="application/javascript">
+      // <![CDATA[
+      var INTERVAL = 20;
+      var DEBUG = false; //true;
+      bulletActive = false;
+
+      var canvas; // The canvas shown on the page.
+      var ctx; // The context, used to access the canvas.
+
+      var SpriteRow = 0; // Row of the graphic to show
+      var SpriteCol = 0; // Col of the graphic to show
+      var MaxSpriteRow = 8; // How many rows of images
+      var MaxSpriteCol = 8; // How many columns of images
+      var MaxBoulderCol = 8; // How many columns of images for the boulder
+      var tileWidth = 32; // Size of each tile (32x32)
+      var tileHeight = 32;
+      var goal_found = false;
+      var GOALTILE = 5; // Which tile is the goal
+
+      var upSequence = 0; // Is the player moving up? >0 means yes
+      var downSequence = 0; // Is the player moving down? >0 means yes
+      var leftSequence = 0; // Is the player moving left? >0 means yes
+      var rightSequence = 0; // Is the player moving right? >0 means yes
+
+      // Start the sprite on an even boundary (divisible by 32)
+      var SpriteWidth = 32; // Width, Height of each subimage
+      var SpriteHeight = 32;
+      var HalfSpriteWidth = 16; // Half Width, Height of each subimage
+      var HalfSpriteHeight = 16;
+
+      var WIDTH = 640; // of the canvas
+      var HEIGHT = 480; // of the canvas
+      var MAXROW = 15;
+      var MAXCOL = 20;
+      var moved = false; // Did the user move the square?
+      var myX = 100; // Where the player's sprite should go on the canvas
+      var myY = 300; // Where the player's sprite should go on the canvas
+      var bulletY = myY;
+      var moveAmount = 8; // How many pixels to move per update.
+      var squareWidth = 32; // Width, Height of the square
+      var squareHeight = 32;
+
+      // Variables related to the boulder.
+      var boulderX = 0;
+      var boulderY = 0;
+      var boulderDX = 0; //-20;
+      var boulderDY = 5;
+      var boulderCol = 0;
+      var boulderRow = 0;
+      var boulderActive = false;
+      var tickCount = 20; // When this counts down to 0, spawn a new boulder
+
+      var stars_offset = 0; // We move the stars, slowly (floating pt)
+      var goal_offset = 0; // Where the goal is (a flag)
+      //var MOUNTAINMAX;             // Maximum value to start stars (on left)
+      var STARSMAX; // Maximum value to start stars (on left)
+      var starsSpeed = 0.25; // How much stars move in relation to sprite
+
+      var stars_loaded = false;
+      var sprite_loaded = false;
+      var trees_loaded = true; // no trees, yet
+      var mountains_loaded = true; // unused
+      var tiles_loaded = true; // unused
+      var boulder_loaded = false;
+      var pageLoadComplete = false;
+      var stars = new Image(); // distant stars
+      stars.src = "starbackground.png";
+
+      var SpriteImage = new Image(); // Sprite sheet
+      SpriteImage.src = "spaceship.png";
+      var boulderImage = new Image(); // Sprite sheet
+      boulderImage.src = "rolling.png";
+
+      var bullet = new Image();
+      bullet.src = "13.png";
+
+      // When an image loads, set a variable.
+      // This way, we can start once we have everything.
+      SpriteImage.onload = function () {
+        sprite_loaded = true;
+      };
+      stars.onload = function () {
+        STARSMAX = stars.height - HEIGHT;
+        stars_offset = STARSMAX;
+        stars_loaded = true;
+      };
+      boulderImage.onload = function () {
+        // console.log('Loaded boulder image');
+        boulder_loaded = true;
+      };
+
+      // mountains.onload = function() {
+      //   MOUNTAINMAX = mountains.width - WIDTH;
+      //   mountains_loaded = true;
+      // }
+
+      var blueImage = new Image(); // Sprite sheet
+      blueImage.src = "bluesquare.png";
+
+      var featureImage = new Image(); // feature sheet
+      featureImage.src = "features.png";
+
+      // Set up a timer to execute every 50 ms.
+      // Begin code from
+      //   http://www.w3schools.com/jsref/met_win_setinterval.asp
+      var myInterval;
+      var pausedState = true;
+      // End code from www.w3schools.com
+
+      // A wall is a feature code of 1
+      // (i.e. 1 place right of left-most feature image)
+      // Make this array 15 rows by 20 columns
+      // (each square is 32x32, so 15*32, 20*32 = 480, 640
+      //
+      // There are other ways to do this. I like this way because
+      // I can see where the features are in relation to each other.
+      // Each value corresponds to a subimage of "features.png"
+      // blank, wall, tree, ice, boulder, goal.
+      var myarray = [
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      ];
+
+      //
+      // Change the background screen color to black.
+      //
+      function black() {
+        document.bgColor = "#000000";
+        Fill = "#000000";
+      }
+
+      //
+      // Change the background screen color to green.
+      //
+      function green() {
+        document.bgColor = "#0f6000";
+        Fill = "#0f6000";
+      }
+
+      //
+      // Change the background screen color to red.
+      //
+      function red() {
+        document.bgColor = "#f04040";
+        Fill = "#f04040";
+      }
+
+      function eraseSprite(X, Y) {
+        // erase sprite
+        ctx.clearRect(X, Y, 32, 32);
+      }
+
+      // Erase the entire canvas.
+      function eraseEverything() {
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      }
+
+      function drawEverything() {
+        // The drawImage command lets you copy a rectangle from an image
+        // to the canvas.
+        // It has the pattern
+        //   ctx.drawImage(a, b, c, d, e, f, g);
+        // which means
+        //   ctx = the context (on the canvas)
+        //   a = the image draw
+        //   b = the X offset into image a
+        //   c = the Y offset into image a
+        //   d = the width of the subimage
+        //   e = the height of the subimage
+        //   f = the X offset into the canvas, where you want the rectangle
+        //   g = the Y offset into the canvas, where you want the rectangle
+        //   h = the width of the rectangle on the canvas
+        //   i = the height of the rectangle on the canvas
+        //
+        // b,c,d,e define the source rectangle
+        // f,g,h,i define the destination rectangle
+        //
+        // Often, h = d and i = e, that is, the image you show on the canvas
+        // is the same size as the image on the sprite/tile sheet.
+        // However, if h<d and i<e, it will appear smaller.
+        //
+
+        // mountains and trees are long images, so only show WIDTH at a time.
+
+        // show mountains
+        ctx.drawImage(
+          stars,
+          0,
+          Math.floor(stars_offset),
+          WIDTH,
+          HEIGHT,
+          0,
+          0,
+          WIDTH,
+          HEIGHT
+        );
+        // console.log('Showed stars from ' + stars_offset);
+
+        // show trees
+        //ctx.drawImage(trees,
+        //  tree_offset, 0, WIDTH, TreeHeight,
+        //  0, TREE_HEIGHT_FROM_GROUND, WIDTH, TreeHeight);
+
+        // show the player
+        //drawSprite();
+        // drawSprite(myImage, myX, myY, myCol, myRow, myMaxSpriteCol) {
+        SpriteCol = drawSprite(
+          SpriteImage,
+          myX,
+          myY,
+          SpriteCol,
+          SpriteRow,
+          MaxSpriteCol
+        );
+        if (bulletActive) {
+          drawBullet(bullet, myX, bulletY);
+        }
+
+        if (boulderActive) {
+          xinc = 0;
+          for (let i = 0; i < 5; i++) {
+            boulderCol = drawSprite(
+              boulderImage,
+              boulderX + xinc,
+              boulderY,
+              boulderCol,
+              boulderRow,
+              MaxBoulderCol
+            );
+            xinc += 40;
+          }
+        }
+      }
+
+      // Look at each tile location. Draw the tile.
+      //function drawTiles() {
+      //  var index = 0;
+      //  var str;
+      //  for (var r=0; r<MAXROW; r++) {
+      //    // str = '';
+      //    for (var c=0; c<MAXCOL; c++) {
+      //      tile = myarray[index]; // [r* MAXCOL + c];
+      //      // str += tile + ' ';
+      //      ctx.drawImage(featureImage,
+      //         // What part of the image (0 because there is only one row of images)
+      //         tile*tileWidth, 0, tileWidth, tileHeight,
+      //         // Where it goes on the canvas
+      //         c*tileWidth, r*tileHeight, tileWidth, tileHeight);
+      //
+      //      index++;
+      //    }
+      //    // console.log(str);
+      //  }
+      //}
+
+      function drawSprite(myImage, myX, myY, myCol, myRow, myMaxSpriteCol) {
+        // drawImage( image to draw,
+        //            topCornerX in that image, topCornerY in that image,
+        //            offsetToBottomX, offsetToBottomY,
+        //            where to put it on the canvasX, where to put it on the canvasY,
+        //            offsetToBottomCanvasX, offsetToBottomCanvasY )
+        // ctx implies the canvas, so image to draw is the sprite sheet (or just
+        //   an image)
+        // The offsets are usually the same, but it will shrink/expand the subimage
+        //   if they are different.
+        // draw blue square
+        //ctx.drawImage(blueImage,
+        ctx.drawImage(
+          myImage,
+          // What part of the image
+          myCol * 32,
+          myRow * 32,
+          32,
+          32,
+          // Where it goes on the canvas
+          myX,
+          myY,
+          32,
+          32
+        );
+        myCol++;
+        if (myCol >= myMaxSpriteCol) myCol = 0;
+        return myCol;
+      }
+      function drawBullet(myImage, myX, myY, myCol, myRow, myMaxSpriteCol) {
+        ctx.drawImage(bullet, myX, myY);
+      }
+
+      function Tick() {
+        eraseEverything();
+        if (moved) {
+          moved = false;
+        }
+        tickCount--;
+        if (tickCount <= 0) {
+          tickCount = 100;
+          // Spawn a boulder
+          boulderActive = true;
+          boulderX = Math.floor(Math.random() * (HEIGHT - squareWidth));
+          boulderY = 0; //HEIGHT - squareHeight;
+        }
+        if (boulderActive) {
+          //eraseSprite(boulderX, boulderY);
+          //move();
+          boulderY = boulderY + boulderDY;
+          checkCollisionSprites();
+        }
+        // drawBullet();
+
+        // Make the background appear to move
+        // Background always scrolls
+        stars_offset = stars_offset - 1; // starsSpeed;
+        if (stars_offset < 0) stars_offset = 0;
+
+        if (leftSequence > 0) {
+          //stars_offset = stars_offset - 1; //TreeSpeed;
+          //if (stars_offset < 0)
+          //  stars_offset = 0;
+          //stars_offset = stars_offset - MountainSpeed;
+          //if (stars_offset < 0)
+          //  stars_offset = 0;
+          leftSequence++;
+          if (leftSequence > leftSeqMax) leftSequence = 0;
+        } else if (rightSequence > 0) {
+          // Make the background appear to move
+          //tree_offset = tree_offset + 1; //TreeSpeed;
+          //if (tree_offset >= TREEMAX)
+          //  tree_offset = TREEMAX - 1;
+          //stars_offset = stars_offset + MountainSpeed;
+          //if (stars_offset >= MOUNTAINMAX)
+          //  stars_offset = MOUNTAINMAX - 1;
+          rightSequence++;
+          if (rightSequence > rightSeqMax) rightSequence = 0;
+        }
+
+        // Update graphic if something is moving.
+        // Update SpriteCol, though this could be done twice if also pressing L/R.
+        if (upSequence + downSequence + leftSequence + rightSequence > 0) {
+          // update the next image to show
+          SpriteCol++;
+          if (SpriteCol >= MaxSpriteCol) SpriteCol = 0;
+        }
+
+        // Show a new image
+        drawEverything();
+
+        // Did the player win?
+        if (stars_offset <= goal_offset) {
+          console.log("You win!");
+          document.getElementById("youwin").innerHTML = "You win!";
+          green();
+          clearInterval(myInterval);
+        }
+        if (bulletActive) {
+          // console.log(bulletY);
+          bulletY--;
+        }
+      }
+
+      // Loading external resources is asynchronous.
+
+      function loadComplete() {
+        console.log("Load is complete.");
+        canvas = document.getElementById("theCanvas");
+        ctx = canvas.getContext("2d");
+
+        //drawTiles();
+        // SpriteCol = drawBullet(
+        //   SpriteImage,
+        //   myX,
+        //   myY,
+        //   SpriteCol,
+        //   SpriteRow,
+        //   MaxSpriteCol
+        // );
+        SpriteCol = drawSprite(
+          SpriteImage,
+          myX,
+          myY,
+          SpriteCol,
+          SpriteRow,
+          MaxSpriteCol
+        );
+
+        pageLoadComplete = true;
+        // console.log('check4all timer');
+        myInterval = self.setInterval(function () {
+          check4all_loaded();
+        }, 500);
+      }
+
+      function paused() {
+        clearTimeout(myInterval);
+      }
+
+      // Do the new coordinates cause a collision with boulder and player?
+      function checkCollisionSprites() {
+        var diffX = Math.abs(myX - boulderX);
+        var diffY = Math.abs(myY - boulderY);
+        if (diffX < HalfSpriteWidth && diffY < HalfSpriteHeight) {
+          console.log(
+            "Collision with player at " +
+              myX +
+              ", " +
+              myY +
+              " and boulder at " +
+              boulderX +
+              ", " +
+              boulderY
+          );
+          red();
+          paused();
+        }
+        if ((bolderY = bulletY)) {
+          console.log("CRASH!!");
+          console.log(bolderY + " = " + bulletY);
+        }
+      }
+
+      // Do the new coordinates cause a collision with a tile?
+      function checkCollision(newX, newY) {
+        // Use floor since result should be integer
+        var tempRow = Math.floor(newY / tileWidth);
+        var tempCol = Math.floor(newX / tileHeight);
+        // So tempRow, tempCol are integer offsets into array.
+        // Is there a non-0 feature there?
+        if (myarray[tempRow * MAXCOL + tempCol] == 0) return true;
+
+        // Did we get to the goal?
+        if (!goal_found && myarray[tempRow * MAXCOL + tempCol] == GOALTILE) {
+          green();
+          goal_found = true;
+        }
+
+        return false;
+      }
+
+      // Loading external resources is asynchronous.
+      // We cannot start until everything is loaded.
+      // This function checks to see that everything loaded.
+      function check4all_loaded() {
+        var checkStr = "check4all timer: ";
+        if (sprite_loaded) checkStr += "  + sprite";
+        else checkStr += "  - sprite";
+        if (boulder_loaded) checkStr += "  + asteroid";
+        else checkStr += "  - asteroid";
+        if (stars_loaded) checkStr += "  + stars";
+        else checkStr += "  - stars";
+        if (trees_loaded) checkStr += "  + trees";
+        else checkStr += "  - trees";
+        if (mountains_loaded) checkStr += "  + mountains";
+        else checkStr += "  - mountains";
+        if (tiles_loaded) checkStr += "  + tiles";
+        else checkStr += "  - tiles";
+        if (pageLoadComplete) checkStr += "  + pageLoadComplete";
+        else checkStr += "  - pageLoadComplete";
+        console.log(checkStr);
+        if (
+          sprite_loaded &&
+          stars_loaded &&
+          trees_loaded &&
+          mountains_loaded &&
+          tiles_loaded &&
+          boulder_loaded &&
+          pageLoadComplete
+        ) {
+          // Everything has loaded.
+          // Stop the check-loaded interval
+          clearInterval(myInterval);
+          black(); // background color
+          eraseEverything();
+          drawEverything();
+          // Start a game interval
+          console.log("Start a game interval");
+          myInterval = self.setInterval(function () {
+            Tick();
+          }, INTERVAL);
+        }
+      }
+      function pauseAndPlay() {
+        if (pausedState) {
+          clearTimeout(myInterval);
+          pausedState = false;
+        } else {
+          myInterval = self.setInterval(function () {
+            Tick();
+          }, INTERVAL);
+        }
+      }
+      // What to do when the user presses a key.
+      function whenKeyPressed(key) {
+        // Erase the sprite from its current location.
+        //eraseSprite(myX, myY);
+        // Remember the old x,y values
+        var newX = myX;
+        var newY = myY;
+
+        switch (key) {
+          case 28: // Right arrow was pressed
+            SpriteRow = 1;
+            // Go right
+            newX = newX + moveAmount;
+            if (newX + squareWidth > WIDTH) newX = WIDTH - squareWidth;
+            moved = true;
+            break;
+          case 29: // Left arrow, ASCII 29
+            SpriteRow = 0;
+            // Go down
+            newX = newX - moveAmount;
+            if (newX < 0) newX = 0;
+            moved = true;
+            break;
+          case 30: // Up arrow was pressed
+            SpriteRow = 2;
+            // Go up
+            newY = newY - moveAmount;
+            if (newY < 0) newY = 0;
+            moved = true;
+            break;
+          case 31: // Down arrow was pressed
+            SpriteRow = 3;
+            // Go down
+            newY = newY + moveAmount;
+            if (newY + squareHeight > HEIGHT) newY = HEIGHT - squareWidth;
+            moved = true;
+            break;
+          case 32:
+            // SpriteCol =
+            bulletY++;
+            bulletActive = true;
+
+          // case 80:
+          //   console.log("p");
+          //   paused = true;
+          //   pauseAndPlay();
+        }
+
+        // Check the new coords
+        // newX, newY is just the upper-left corner.
+        // Also check the upper-right, lower-left, and lower-right corners.
+        if (
+          checkCollision(newX, newY) &&
+          checkCollision(newX + SpriteWidth, newY) &&
+          checkCollision(newX, newY + SpriteHeight) &&
+          checkCollision(newX + SpriteWidth, newY + SpriteHeight)
+        ) {
+          myX = newX;
+          myY = newY;
+        } else {
+          console.log("could not move there");
+        }
+
+        // Show a new image
+        SpriteCol = drawSprite(
+          SpriteImage,
+          myX,
+          myY,
+          SpriteCol,
+          SpriteRow,
+          MaxSpriteCol
+        );
+      }
+
+      ///]]>
+    </script>
+  </head>
+  <body onload="loadComplete()" bgcolor="#0f0000" text="#ffffff">
+    <center>
+      <script type="application/javascript">
+        document.write("<center>");
+        document.write(
+          '<canvas id="theCanvas" tabindex="1" width="' +
+            WIDTH +
+            '" height="' +
+            HEIGHT +
+            '"></canvas>'
+        );
+        //document.write('<h2>Space-bar </h2>');
+        // Make youwin text 10% of view window
+        document.write('<h2 style="font-size:10vw" id="youwin"></h2>');
+        document.write("</center>");
+      </script>
+      <h2>Press up/down/left/right to move</h2>
+    </center>
+
+    <script type="application/javascript">
+      //
+      // Set up a function to handle key-presses.
+      //
+      // This should work across most browsers.
+      document["onkeydown"] = function (event) {
+        event = event || window.event;
+        var key = event.which || event.cursor;
+        // Check for a special key value, and map it to ASCII.
+        switch (key) {
+          case 37: // Left arrow, ASCII 29
+            key = 29;
+            break;
+          case 38: // Up arrow, ASCII 30
+            key = 30;
+            break;
+          case 39: // Right arrow, ASCII 28
+            key = 28;
+            break;
+          case 40: // Down arrow, ASCII 31
+            key = 31;
+            break;
+        }
+        //document.getElementById("keydown").innerHTML =
+        //  " key Down event, keycode " + key;
+        whenKeyPressed(key);
+      };
+    </script>
+  </body>
+</html>

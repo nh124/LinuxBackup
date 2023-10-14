@@ -124,7 +124,7 @@ const FormAuth = ({
             type="button"
             onClick={(e) => {
               e.preventDefault();
-              window.location.href = "/register";
+              window.location.href = "#/register";
             }}
           >
             Register

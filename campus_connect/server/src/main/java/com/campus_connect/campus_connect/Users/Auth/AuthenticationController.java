@@ -14,6 +14,7 @@ public class AuthenticationController {
     private final AuthenticationService service;
     private final UserRepository userRepository;
 
+
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegisterRequest request){
         if(userRepository.existsByUsername(request.getUsername())){
